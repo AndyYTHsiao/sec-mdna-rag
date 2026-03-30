@@ -1,0 +1,21 @@
+[project]
+name = "mdna-qa-rag"
+version = "0.1.0"
+description = "Financial RAG System for SEC 10-K MD&A Analysis"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "faiss-cpu>=1.13.2",
+    "matplotlib>=3.10.8",
+    "openai>=2.21.0",
+    "python-dotenv>=1.2.1",
+    "questionary>=2.1.1",
+    "rank-bm25>=0.2.2",
+    "streamlit>=1.55.0",
+    "tqdm>=4.67.1",
+]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.14.13",
+]

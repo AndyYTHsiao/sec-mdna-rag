@@ -1,0 +1,122 @@
+{
+    "320193": {
+        "ticker": "AAPL",
+        "name": "Apple Inc.",
+        "sector": "Information Technology",
+        "industry": "Technology Hardware, Storage & Peripherals"
+    },
+    "1467373": {
+        "ticker": "ACN",
+        "name": "Accenture",
+        "sector": "Information Technology",
+        "industry": "IT Services"
+    },
+    "796343": {
+        "ticker": "ADBE",
+        "name": "Adobe Inc.",
+        "sector": "Information Technology",
+        "industry": "Software"
+    },
+    "6281": {
+        "ticker": "ADI",
+        "name": "Analog Devices",
+        "sector": "Information Technology",
+        "industry": "Semiconductors & Semiconductor Equipment"
+    },
+    "7084": {
+        "ticker": "ADM",
+        "name": "Archer-Daniels-Midland",
+        "sector": "Consumer Staples",
+        "industry": "Food Products"
+    },
+    "2488": {
+        "ticker": "AMD",
+        "name": "Advanced Micro Devices",
+        "sector": "Information Technology",
+        "industry": "Semiconductors & Semiconductor Equipment"
+    },
+    "1018724": {
+        "ticker": "AMZN",
+        "name": "Amazon",
+        "sector": "Consumer Discretionary",
+        "industry": "Broadline Retail"
+    },
+    "313927": {
+        "ticker": "CHD",
+        "name": "Church & Dwight",
+        "sector": "Consumer Staples",
+        "industry": "Household Products"
+    },
+    "909832": {
+        "ticker": "COST",
+        "name": "Costco",
+        "sector": "Consumer Staples",
+        "industry": "Consumer Staples Distribution & Retail"
+    },
+    "712515": {
+        "ticker": "EA",
+        "name": "Electronic Arts",
+        "sector": "Communication Services",
+        "industry": "Entertainment"
+    },
+    "51644": {
+        "ticker": "IPG",
+        "name": "The Interpublic Group of Companies",
+        "sector": "Communication Services",
+        "industry": "Media"
+    },
+    "1048286": {
+        "ticker": "MAR",
+        "name": "Marriott International",
+        "sector": "Consumer Discretionary",
+        "industry": "Hotels, Restaurants & Leisure"
+    },
+    "320187": {
+        "ticker": "NKE",
+        "name": "Nike, Inc.",
+        "sector": "Consumer Discretionary",
+        "industry": "Textiles, Apparel & Luxury Goods"
+    },
+    "1045810": {
+        "ticker": "NVDA",
+        "name": "Nvidia",
+        "sector": "Information Technology",
+        "industry": "Semiconductors & Semiconductor Equipment"
+    },
+    "29989": {
+        "ticker": "OMC",
+        "name": "Omnicom Group",
+        "sector": "Communication Services",
+        "industry": "Media"
+    },
+    "1037038": {
+        "ticker": "RL",
+        "name": "Ralph Lauren Corporation",
+        "sector": "Consumer Discretionary",
+        "industry": "Textiles, Apparel & Luxury Goods"
+    },
+    "732717": {
+        "ticker": "T",
+        "name": "AT&T",
+        "sector": "Communication Services",
+        "industry": "Diversified Telecommunication Services"
+    },
+    "104169": {
+        "ticker": "WMT",
+        "name": "Walmart",
+        "sector": "Consumer Staples",
+        "industry": "Consumer Staples Distribution & Retail"
+    },
+    "1090727": {
+        "ticker": "UPS",
+        "name": "United Parcel Service",
+        "sector": "Industrials",
+        "industry": "Air Freight & Logistics"
+    },
+    "66740": {
+        "ticker": "MMM",
+        "name": "3M",
+        "sector": "Industrials",
+        "industry": "Industrial Conglomerates"
+    }
+}
