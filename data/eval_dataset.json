@@ -1,0 +1,1702 @@
+[
+    {
+        "id": "q_001",
+        "query": "Did Apple spend more on share repurchases or dividends in 2020",
+        "company": "Apple",
+        "evidence": [
+            {
+                "doc_id": "320193_2020-09-26",
+                "paragraph_id": 7,
+                "text": "During 2020, the Company repurchased $72.5 billion of its common stock and paid dividends and dividend equivalents of $14.1 billion.",
+                "supports": "full"
+            },
+            {
+                "doc_id": "320193_2020-09-26",
+                "paragraph_id": 7,
+                "text": "During 2020, the Company repurchased 917 million shares of its common stock for $72.5 billion",
+                "supports": "partial"
+            }
+        ],
+        "type": "reasoning"
+    },
+    {
+        "id": "q_002",
+        "query": "Was the amount Apple spent on share repurchases in 2020 greater than the increase in its buyback authorization that same year?",
+        "company": "Apple",
+        "evidence": [
+            {
+                "doc_id": "320193_2020-09-26",
+                "paragraph_id": 7,
+                "text": "In April 2020, the Company announced an increase to its current share repurchase program authorization from $175 billion to $225 billion and raised its quarterly dividend from $0.1925 to $0.205 per share beginning in May 2020. During 2020, the Company repurchased $72.5 billion of its common stock and paid dividends and dividend equivalents of $14.1 billion.",
+                "supports": "full"
+            }
+        ],
+        "type": "reasoning"
+    },
+    {
+        "id": "q_003",
+        "query": "By how much did Apple's total net sales increase in 2020 compared to 2019?",
+        "company": "Apple",
+        "evidence": [
+            {
+                "doc_id": "320193_2020-09-26",
+                "paragraph_id": 6,
+                "text": "Total net sales increased 6% or $14.3 billion during 2020 compared to 2019",
+                "supports": "full"
+            }
+        ],
+        "type": "factoid"
+    },
+    {
+        "id": "q_004",
+        "query": "What shareholder-related actions did Apple take in 2020?",
+        "company": "Apple",
+        "evidence": [
+            {
+                "doc_id": "320193_2020-09-26",
+                "paragraph_id": 7,
+                "text": "In April 2020, the Company announced an increase to its current share repurchase program authorization from $175 billion to $225 billion and raised its quarterly dividend from $0.1925 to $0.205 per share beginning in May 2020. During 2020, the Company repurchased $72.5 billion of its common stock and paid dividends and dividend equivalents of $14.1 billion.",
+                "supports": "partial"
+            },
+            {
+                "doc_id": "320193_2020-09-26",
+                "paragraph_id": 8,
+                "text": "On August 28, 2020, the Company effected a four-for-one stock split.",
+                "supports": "partial"
+            }
+        ],
+        "type": "multi-hop"
+    },
+    {
+        "id": "q_005",
+        "query": "Why did iPhone net sales decrease in 2020 compared to 2019?",
+        "company": "Apple",
+        "evidence": [
+            {
+                "doc_id": "320193_2020-09-26",
+                "paragraph_id": 10,
+                "text": "iPhone net sales decreased during 2020 compared to 2019 due primarily to the absence of new iPhone models in the fourth quarter of 2020 and the weakness in foreign currencies relative to the U.S. dollar, partially offset by the introduction of iPhone SE in the third quarter of 2020.",
+                "supports": "full"
+            }
+        ],
+        "type": "factoid"
+    },
+    {
+        "id": "q_006",
+        "query": "What factor partially offset the decline in iPhone net sales in 2020?",
+        "company": "Apple",
+        "evidence": [
+            {
+                "doc_id": "320193_2020-09-26",
+                "paragraph_id": 10,
+                "text": "iPhone net sales decreased during 2020 compared to 2019 due primarily to the absence of new iPhone models in the fourth quarter of 2020 and the weakness in foreign currencies relative to the U.S. dollar, partially offset by the introduction of iPhone SE in the third quarter of 2020.",
+                "supports": "full"
+            }
+        ],
+        "type": "factoid"
+    },
+    {
+        "id": "q_007",
+        "query": "What was the primary driver of the increase in Mac net sales in 2020?",
+        "company": "Apple",
+        "evidence": [
+            {
+                "doc_id": "320193_2020-09-26",
+                "paragraph_id": 11,
+                "text": "Mac net sales increased during 2020 compared to 2019 due primarily to higher net sales of MacBook Pro.",
+                "supports": "full"
+            }
+        ],
+        "type": "factoid"
+    },
+    {
+        "id": "q_008",
+        "query": "Why did iPad net sales increase in 2020?",
+        "company": "Apple",
+        "evidence": [
+            {
+                "doc_id": "320193_2020-09-26",
+                "paragraph_id": 12,
+                "text": "iPad net sales increased during 2020 compared to 2019 due primarily to higher net sales of 10-inch versions of iPad, iPad Air and iPad Pro.",
+                "supports": "full"
+            }
+        ],
+        "type": "factoid"
+    },
+    {
+        "id": "q_009",
+        "query": "Which of Apple's business segments and products drove the increase in net sales across categories in 2020?",
+        "company": "Apple",
+        "evidence": [
+            {
+                "doc_id": "320193_2020-09-26",
+                "paragraph_id": 6,
+                "text": "Total net sales increased 6% or $14.3 billion during 2020 compared to 2019, primarily driven by higher net sales of Services and Wearables, Home and Accessories. The weakness in foreign currencies had an unfavorable impact on net sales during 2020.",
+                "supports": "partial"
+            },
+            {
+                "doc_id": "320193_2020-09-26",
+                "paragraph_id": 11,
+                "text": "Mac net sales increased during 2020 compared to 2019 due primarily to higher net sales of MacBook Pro.",
+                "supports": "partial"
+            },
+            {
+                "doc_id": "320193_2020-09-26",
+                "paragraph_id": 12,
+                "text": "iPad net sales increased during 2020 compared to 2019 due primarily to higher net sales of 10-inch versions of iPad, iPad Air and iPad Pro.",
+                "supports": "partial"
+            },
+            {
+                "doc_id": "320193_2020-09-26",
+                "paragraph_id": 13,
+                "text": "Wearables, Home and Accessories net sales increased during 2020 compared to 2019 due primarily to higher net sales of AirPods and Apple Watch.",
+                "supports": "partial"
+            },
+            {
+                "doc_id": "320193_2020-09-26",
+                "paragraph_id": 14,
+                "text": "Services net sales increased during 2020 compared to 2019 due primarily to higher net sales from the App Store, advertising and cloud services.",
+                "supports": "partial"
+            }
+        ],
+        "type": "multi-hop"
+    },
+    {
+        "id": "q_010",
+        "query": "What were the primary drivers of Apple's net sales increase in the Americas region in 2020?",
+        "company": "Apple",
+        "evidence": [
+            {
+                "doc_id": "320193_2020-09-26",
+                "paragraph_id": 17,
+                "text": "Americas net sales increased during 2020 compared to 2019 due primarily to higher net sales of Services and Wearables, Home and Accessories.",
+                "supports": "full"
+            }
+        ],
+        "type": "factoid"
+    },
+    {
+        "id": "q_011",
+        "query": "How did foreign currency movements affect Apple's regional net sales performance in 2020?",
+        "company": "Apple",
+        "evidence": [
+            {
+                "doc_id": "320193_2020-09-26",
+                "paragraph_id": 17,
+                "text": "The weakness in foreign currencies relative to the U.S. dollar had an unfavorable impact on Americas net sales during 2020.",
+                "supports": "partial"
+            },
+            {
+                "doc_id": "320193_2020-09-26",
+                "paragraph_id": 18,
+                "text": "The weakness in foreign currencies relative to the U.S. dollar had an unfavorable impact on Europe net sales during 2020.",
+                "supports": "partial"
+            },
+            {
+                "doc_id": "320193_2020-09-26",
+                "paragraph_id": 19,
+                "text": "The weakness in foreign currencies relative to the U.S. dollar had an unfavorable impact on Greater China net sales during 2020.",
+                "supports": "partial"
+            },
+            {
+                "doc_id": "320193_2020-09-26",
+                "paragraph_id": 20,
+                "text": "The strength of the Japanese yen relative to the U.S. dollar had a favorable impact on Japan net sales during 2020.",
+                "supports": "partial"
+            },
+            {
+                "doc_id": "320193_2020-09-26",
+                "paragraph_id": 21,
+                "text": "The weakness in foreign currencies relative to the U.S. dollar had an unfavorable impact on Rest of Asia Pacific net sales during 2020.",
+                "supports": "partial"
+            }
+        ],
+        "type": "multi-hop"
+    },
+    {
+        "id": "q_012",
+        "query": "Did Apple utilize more than 50% of its authorized share repurchase program as of September 26, 2020?",
+        "company": "Apple",
+        "evidence": [
+            {
+                "doc_id": "320193_2020-09-26",
+                "paragraph_id": 46,
+                "text": "As of September 26, 2020, the Company was authorized to purchase up to $225 billion of the Company\u2019s common stock under a share repurchase program, of which $168.6 billion had been utilized.",
+                "supports": "full"
+            }
+        ],
+        "type": "reasoning"
+    },
+    {
+        "id": "q_013",
+        "query": "How did the COVID-19 pandemic continue to affect Apple's business operations in 2021?",
+        "company": "Apple",
+        "evidence": [
+            {
+                "doc_id": "320193_2021-09-25",
+                "paragraph_id": 3,
+                "text": "During 2021, aspects of the Company\u2019s business continued to be affected by the COVID-19 pandemic, with many of the Company\u2019s retail stores, as well as channel partner points of sale, temporarily closed at various times, and a significant number of the Company\u2019s employees working remotely.",
+                "supports": "full"
+            }
+        ],
+        "type": "factoid"
+    },
+    {
+        "id": "q_014",
+        "query": "By how much did Apple's total net sales increase in 2021 compared to 2019?",
+        "company": "Apple",
+        "evidence": [
+            {
+                "doc_id": "320193_2020-09-26",
+                "paragraph_id": 6,
+                "text": "Total net sales increased 6% or $14.3 billion during 2020 compared to 2019",
+                "supports": "partial"
+            },
+            {
+                "doc_id": "320193_2021-09-25",
+                "paragraph_id": 5,
+                "text": "Total net sales increased 33% or $91.3 billion during 2021 compared to 2020",
+                "supports": "partial"
+            }
+        ],
+        "type": "multi-hop"
+    },
+    {
+        "id": "q_015",
+        "query": "Did Apple increase its dividend by more than 10% in 2021?",
+        "company": "Apple",
+        "evidence": [
+            {
+                "doc_id": "320193_2021-09-25",
+                "paragraph_id": 6,
+                "text": "raised its quarterly dividend from $0.205 to $0.22 per share beginning in May 2021",
+                "supports": "full"
+            }
+        ],
+        "type": "reasoning"
+    },
+    {
+        "id": "q_016",
+        "query": "Did Apple's Services net sales increase in 2021 due to higher revenue from hardware products like iPhone and Mac?",
+        "company": "Apple",
+        "evidence": [
+            {
+                "doc_id": "320193_2021-09-25",
+                "paragraph_id": 12,
+                "text": "Services net sales increased during 2021 compared to 2020 due primarily to higher net sales from advertising, the App Store and cloud services.",
+                "supports": "full"
+            }
+        ],
+        "type": "factoid"
+    },
+    {
+        "id": "q_017",
+        "query": "Did Apple's Japan net sales increase in 2021 primarily due to higher Mac sales?",
+        "company": "Apple",
+        "evidence": [
+            {
+                "doc_id": "320193_2021-09-25",
+                "paragraph_id": 18,
+                "text": "Japan net sales increased during 2021 compared to 2020 due primarily to higher net sales of iPhone and Services.",
+                "supports": "full"
+            }
+        ],
+        "type": "factoid"
+    },
+    {
+        "id": "q_018",
+        "query": "What factors contributed to the increases in Apple's products and services gross margins in 2021?",
+        "company": "Apple",
+        "evidence": [
+            {
+                "doc_id": "320193_2021-09-25",
+                "paragraph_id": 21,
+                "text": "Products gross margin increased during 2021 compared to 2020 due primarily to higher Products volume, a different Products mix and the strength in foreign currencies relative to the U.S. dollar.",
+                "supports": "partial"
+            },
+            {
+                "doc_id": "320193_2021-09-25",
+                "paragraph_id": 22,
+                "text": "Services gross margin increased during 2021 compared to 2020 due primarily to higher Services net sales and a different Services mix.",
+                "supports": "partial"
+            }
+        ],
+        "type": "multi-hop"
+    },
+    {
+        "id": "q_019",
+        "query": "What were the primary drivers of the increase in Apple's R&D expenses in 2021?",
+        "company": "Apple",
+        "evidence": [
+            {
+                "doc_id": "320193_2021-09-25",
+                "paragraph_id": 25,
+                "text": "The year-over-year growth in R&D expense in 2021 was driven primarily by increases in headcount-related expenses, R&D-related professional services and infrastructure-related costs.",
+                "supports": "full"
+            }
+        ],
+        "type": "factoid"
+    },
+    {
+        "id": "q_020",
+        "query": "Name some products Apple launched in fiscal year 2022.",
+        "company": "Apple",
+        "evidence": [
+            {
+                "doc_id": "320193_2022-09-24",
+                "paragraph_id": 4,
+                "text": "First Quarter 2022: Updated MacBook Pro 14\" and MacBook Pro 16\", powered by the Apple M1 Pro or M1 Max chip; and Third generation of AirPods.",
+                "supports": "partial"
+            },
+            {
+                "doc_id": "320193_2022-09-24",
+                "paragraph_id": 5,
+                "text": "Second Quarter 2022: Updated iPhone SE with 5G technology; All-new Mac Studio, powered by the Apple M1 Max or M1 Ultra chip; All-new Studio Display\u2122; and Updated iPad Air with 5G technology, powered by the Apple M1 chip.",
+                "supports": "partial"
+            },
+            {
+                "doc_id": "320193_2022-09-24",
+                "paragraph_id": 6,
+                "text": "Third Quarter 2022: Updated MacBook Air and MacBook Pro 13\", both powered by the Apple M2 chip; iOS 16, macOS Ventura, iPadOS 16 and watchOS 9, updates to the Company\u2019s operating systems; and Apple Pay Later, a buy now, pay later service.",
+                "supports": "partial"
+            },
+            {
+                "doc_id": "320193_2022-09-24",
+                "paragraph_id": 7,
+                "text": "Fourth Quarter 2022: iPhone 14, iPhone 14 Plus, iPhone 14 Pro and iPhone 14 Pro Max; Second generation of AirPods Pro; and Apple Watch Series 8, updated Apple Watch SE and all-new Apple Watch Ultra.",
+                "supports": "partial"
+            }
+        ],
+        "type": "multi-hop"
+    },
+    {
+        "id": "q_021",
+        "query": "What factors drove Apple's total net sales growth in fiscal 2022?",
+        "company": "Apple",
+        "evidence": [
+            {
+                "doc_id": "320193_2022-09-24",
+                "paragraph_id": 2,
+                "text": "Total net sales increased 8% or $28.5 billion during 2022 compared to 2021, driven primarily by higher net sales of iPhone, Services and Mac.",
+                "supports": "full"
+            }
+        ],
+        "type": "factoid"
+    },
+    {
+        "id": "q_022",
+        "query": "How much did Apple's quarterly dividend per share change in fiscal year 2022?",
+        "company": "Apple",
+        "evidence": [
+            {
+                "doc_id": "320193_2022-09-24",
+                "paragraph_id": 8,
+                "text": "In April 2022, the Company announced an increase to its Program authorization from $315 billion to $405 billion and raised its quarterly dividend from $0.22 to $0.23 per share beginning in May 2022.",
+                "supports": "full"
+            }
+        ],
+        "type": "reasoning"
+    },
+    {
+        "id": "q_023",
+        "query": "How many of Apple's reportable segments experienced an increase in net sales in 2022 compared to 2021?",
+        "company": "Apple",
+        "evidence": [
+            {
+                "doc_id": "320193_2022-09-24",
+                "paragraph_id": 19,
+                "text": "Americas net sales increased during 2022 compared to 2021 due primarily to higher net sales of iPhone, Services and Mac.",
+                "supports": "partial"
+            },
+            {
+                "doc_id": "320193_2022-09-24",
+                "paragraph_id": 20,
+                "text": "Europe net sales increased during 2022 compared to 2021 due primarily to higher net sales of iPhone and Services.",
+                "supports": "partial"
+            },
+            {
+                "doc_id": "320193_2022-09-24",
+                "paragraph_id": 21,
+                "text": "Greater China net sales increased during 2022 compared to 2021 due primarily to higher net sales of iPhone and Services.",
+                "supports": "partial"
+            },
+            {
+                "doc_id": "320193_2022-09-24",
+                "paragraph_id": 22,
+                "text": "Japan net sales decreased during 2022 compared to 2021 due to the weakness of the yen relative to the U.S. dollar.",
+                "supports": "partial"
+            },
+            {
+                "doc_id": "320193_2022-09-24",
+                "paragraph_id": 23,
+                "text": "Rest of Asia Pacific net sales increased during 2022 compared to 2021 due primarily to higher net sales of iPhone, Mac and Services.",
+                "supports": "partial"
+            }
+        ],
+        "type": "multi-hop"
+    },
+    {
+        "id": "q_024",
+        "query": "Why did Amazon's operating cash flow increase in 2019 compared to 2018?",
+        "company": "Amazon",
+        "evidence": [
+            {
+                "doc_id": "1018724_2019-12-31",
+                "paragraph_id": 21,
+                "text": "The increase in operating cash flow in 2019, compared to the prior year, is primarily due to the increase in net income, excluding non-cash charges such as depreciation, amortization, and stock-based compensation.",
+                "supports": "full"
+            }
+        ],
+        "type": "factoid"
+    },
+    {
+        "id": "q_025",
+        "query": "By how much did shipping costs increase from 2018 to 2019?",
+        "company": "Amazon",
+        "evidence": [
+            {
+                "doc_id": "1018724_2019-12-31",
+                "paragraph_id": 44,
+                "text": "Shipping costs, which include sortation and delivery centers and transportation costs, were $27.7 billion and $37.9 billion in 2018 and 2019.",
+                "supports": "full"
+            }
+        ],
+        "type": "reasoning"
+    },
+    {
+        "id": "q_026",
+        "query": "What was the percentage increase in shipping costs from 2018 to 2019?",
+        "company": "Amazon",
+        "evidence": [
+            {
+                "doc_id": "1018724_2019-12-31",
+                "paragraph_id": 44,
+                "text": "Shipping costs, which include sortation and delivery centers and transportation costs, were $27.7 billion and $37.9 billion in 2018 and 2019.",
+                "supports": "full"
+            }
+        ],
+        "type": "reasoning"
+    },
+    {
+        "id": "q_027",
+        "query": "What are the key similarities and differences in the primary factors driving the decrease in North America operating income and International operating loss in 2019?",
+        "company": "Amazon",
+        "evidence": [
+            {
+                "doc_id": "1018724_2019-12-31",
+                "paragraph_id": 38,
+                "text": "The decrease in North America operating income in absolute dollars in 2019, compared to the prior year, is primarily due to increased shipping costs and marketing expense",
+                "supports": "partial"
+            },
+            {
+                "doc_id": "1018724_2019-12-31",
+                "paragraph_id": 39,
+                "text": "The decrease in International operating loss in absolute dollars in 2019, compared to the prior year, is primarily due to increased unit sales, including sales by third-party sellers, and advertising sales, and slower growth in certain operating expenses",
+                "supports": "partial"
+            }
+        ],
+        "type": "multi-hop"
+    },
+    {
+        "id": "q_028",
+        "query": "Approximately how much COVID-19-related cost did the company incur outside of Q4 2020 during the full year?",
+        "company": "Amazon",
+        "evidence": [
+            {
+                "doc_id": "1018724_2020-12-31",
+                "paragraph_id": 12,
+                "text": "We incurred approximately $4.0 billion in COVID-19 related costs in Q4 2020, for a total of more than $11.5 billion during 2020.",
+                "supports": "full"
+            }
+        ],
+        "type": "reasoning"
+    },
+    {
+        "id": "q_029",
+        "query": "By how much did the company's cash, cash equivalents, and marketable securities increase from 2020 to 2021?",
+        "company": "Amazon",
+        "evidence": [
+            {
+                "doc_id": "1018724_2021-12-31",
+                "paragraph_id": 19,
+                "text": "Our principal sources of liquidity are cash flows generated from operations and our cash, cash equivalents, and marketable securities balances, which, at fair value, were $84.4 billion and $96.0 billion as of December 31, 2020 and 2021.",
+                "supports": "full"
+            }
+        ],
+        "type": "reasoning"
+    },
+    {
+        "id": "q_030",
+        "query": "Which segment experienced the highest sales growth rate in 2021: North America, International, or AWS?",
+        "company": "Amazon",
+        "evidence": [
+            {
+                "doc_id": "1018724_2021-12-31",
+                "paragraph_id": 33,
+                "text": "North America sales increased 18% in 2021, compared to the prior year.",
+                "supports": "partial"
+            },
+            {
+                "doc_id": "1018724_2021-12-31",
+                "paragraph_id": 34,
+                "text": "International sales increased 22% in 2021, compared to the prior year.",
+                "supports": "partial"
+            },
+            {
+                "doc_id": "1018724_2021-12-31",
+                "paragraph_id": 35,
+                "text": "AWS sales increased 37% in 2021, compared to the prior year.",
+                "supports": "partial"
+            }
+        ],
+        "type": "multi-hop"
+    },
+    {
+        "id": "q_031",
+        "query": "By how many percentage points did AWS sales growth exceed total company sales growth in 2021?",
+        "company": "Amazon",
+        "evidence": [
+            {
+                "doc_id": "1018724_2021-12-31",
+                "paragraph_id": 32,
+                "text": "Sales increased 22% in 2021, compared to the prior year.",
+                "supports": "partial"
+            },
+            {
+                "doc_id": "1018724_2021-12-31",
+                "paragraph_id": 35,
+                "text": "AWS sales increased 37% in 2021, compared to the prior year.",
+                "supports": "partial"
+            }
+        ],
+        "type": "multi-hop"
+    },
+    {
+        "id": "q_032",
+        "query": "How did the impact of foreign exchange rates on International sales compare to the overall company impact in 2021?",
+        "company": "Amazon",
+        "evidence": [
+            {
+                "doc_id": "1018724_2021-12-31",
+                "paragraph_id": 32,
+                "text": "Changes in foreign currency exchange rates impacted net sales by $1.4 billion and $3.8 billion for 2020 and 2021.",
+                "supports": "partial"
+            },
+            {
+                "doc_id": "1018724_2021-12-31",
+                "paragraph_id": 34,
+                "text": "Changes in foreign currency exchange rates impacted International net sales by $1.7 billion and $3.0 billion in 2020 and 2021.",
+                "supports": "partial"
+            }
+        ],
+        "type": "multi-hop"
+    },
+    {
+        "id": "q_033",
+        "query": "Did the company's total liquidity (cash, cash equivalents, and marketable securities) increase or decrease from 2021 to 2022, and by how much?",
+        "company": "Amazon",
+        "evidence": [
+            {
+                "doc_id": "1018724_2022-12-31",
+                "paragraph_id": 19,
+                "text": "Our principal sources of liquidity are cash flows generated from operations and our cash, cash equivalents, and marketable securities balances, which, at fair value, were $96.0 billion and $70.0 billion as of December 31, 2021 and 2022.",
+                "supports": "full"
+            }
+        ],
+        "type": "reasoning"
+    },
+    {
+        "id": "q_034",
+        "query": "Despite the decrease in total liquidity from 2021 to 2022, did operating cash flow increase or decrease, and what does this imply about the company's cash generation versus balance position?",
+        "company": "Amazon",
+        "evidence": [
+            {
+                "doc_id": "1018724_2022-12-31",
+                "paragraph_id": 19,
+                "text": "Our principal sources of liquidity are cash flows generated from operations and our cash, cash equivalents, and marketable securities balances, which, at fair value, were $96.0 billion and $70.0 billion as of December 31, 2021 and 2022.",
+                "supports": "partial"
+            },
+            {
+                "doc_id": "1018724_2022-12-31",
+                "paragraph_id": 20,
+                "text": "Cash provided by (used in) operating activities was $46.3 billion and $46.8 billion in 2021 and 2022. Our operating cash flows result primarily from cash received from our consumer, seller, developer, enterprise, and content creator customers, and advertisers, offset by cash payments we make for products and services, employee compensation, payment processing and related transaction costs, operating leases, and interest payments. Cash received from our customers and other activities generally corresponds to our net sales. The increase in operating cash flow in 2022, compared to the prior year, was primarily due to the increase in net income, excluding non-cash expenses, partially offset by changes in working capital. Working capital at any specific point in time is subject to many variables, including variability in demand, inventory management and category expansion, the timing of cash receipts and payments, customer and vendor payment terms, and fluctuations in foreign exchange rates.",
+                "supports": "partial"
+            }
+        ],
+        "type": "multi-hop"
+    },
+    {
+        "id": "q_035",
+        "query": "What factors affected AWS operating income in 2022?",
+        "company": "Amazon",
+        "evidence": [
+            {
+                "doc_id": "1018724_2022-12-31",
+                "paragraph_id": 40,
+                "text": "The increase in AWS operating income in absolute dollars in 2022, compared to the prior year, is primarily due to increased sales and cost structure productivity, including a reduction in depreciation and amortization expense from our change in the estimated useful lives of our servers and networking equipment, partially offset by increased payroll and related expenses and spending on technology infrastructure, all of which were primarily driven by additional investments to support AWS business growth. Changes in foreign currency exchange rates positively impacted operating income by $1.4 billion in 2022.",
+                "supports": "full"
+            }
+        ],
+        "type": "factoid"
+    },
+    {
+        "id": "q_036",
+        "query": "Which product segments (PC, graphics, server) saw new product launches in 2019, and how do these launches reflect AMD's overall product strategy?",
+        "company": "AMD",
+        "evidence": [
+            {
+                "doc_id": "2488_2019-12-28",
+                "paragraph_id": 3,
+                "text": "2019 marked a milestone in our multi-year journey with the launch of our 7 nanometer (nm) product portfolio. We executed our product roadmap and introduced a number of high-performance products in 2019. For the PC market, we introduced the 3rd Gen AMD Ryzen\u2122 desktop processor family based on the new Zen 2 core architecture with AMD chiplet design approach. In addition to our mainstream PC product family, we introduced the next generation of the Ryzen\u2122 Threadripper\u2122 product line designed for the high-end desktop segment for creators and enthusiasts. We announced our second-generation AMD Ryzen\u2122 3000 Series notebook processors, powering ultrathin, commercial and gaming notebooks.",
+                "supports": "partial"
+            },
+            {
+                "doc_id": "2488_2019-12-28",
+                "paragraph_id": 4,
+                "text": "A number of high-performance graphics products were also launched in 2019. We introduced the AMD Radeon\u2122 VII, a premium graphics card for gamers, creators and enthusiasts. We also announced the availability of the AMD Radeon\u2122 RX 5700-series gaming graphics card family, the AMD Radeon\u2122 RX 5500 series that will be available in desktop PCs from major PC manufacturers as well as the Radeon\u2122 5500M GPU for notebook PCs. Our AMD Radeon\u2122 Pro Vega II GPU is designed to power demanding professional applications. We also announced the AMD Radeon\u2122 Pro W5700, a 7nm professional PC workstation graphics card that enables 3D professionals to visualize and interact with their designs in real time.",
+                "supports": "partial"
+            },
+            {
+                "doc_id": "2488_2019-12-28",
+                "paragraph_id": 5,
+                "text": "For the server market, we introduced the 2nd Gen AMD EPYC\u2122 family of processors that feature up to 64 \"Zen 2\" cores in 7nm process technology for performance and are designed to reduce total cost of ownership (TOC) by up to 50%.",
+                "supports": "partial"
+            }
+        ],
+        "type": "multi-hop"
+    },
+    {
+        "id": "q_037",
+        "query": "Why did operating income increase in 2019 despite a significant rise in operating expenses?",
+        "company": "AMD",
+        "evidence": [
+            {
+                "doc_id": "2488_2019-12-28",
+                "paragraph_id": 26,
+                "text": "Computing and Graphics operating income was $577 million in 2019 compared to operating income of $470 million in 2018. The increase in operating income was primarily driven by higher sales, partially offset by a $194 million increase in operating expenses.",
+                "supports": "full"
+            }
+        ],
+        "type": "factoid"
+    },
+    {
+        "id": "q_038",
+        "query": "What was AMD's net revenue in 2020?",
+        "company": "AMD",
+        "evidence": [
+            {
+                "doc_id": "2488_2020-12-26",
+                "paragraph_id": 3,
+                "text": "Net revenue for 2020 was $9.8 billion, an increase of 45% compared to 2019 net revenue of $6.7 billion.",
+                "supports": "full"
+            }
+        ],
+        "type": "factoid"
+    },
+    {
+        "id": "q_039",
+        "query": "What was the change in aggregate principal debt obligations for AMD in 2020 compared to 2019?",
+        "company": "AMD",
+        "evidence": [
+            {
+                "doc_id": "2488_2020-12-26",
+                "paragraph_id": 53,
+                "text": "Our aggregate principal debt obligations were $338 million and $563 million as of December 26, 2020 and December 28, 2019, respectively.",
+                "supports": "full"
+            }
+        ],
+        "type": "reasoning"
+    },
+    {
+        "id": "q_040",
+        "query": "What was the increase of AMD's gross margin as a percentage of net revenue in 2021 compared to 2020?",
+        "company": "AMD",
+        "evidence": [
+            {
+                "doc_id": "2488_2021-12-25",
+                "paragraph_id": 3,
+                "text": "Gross margin, as a percentage of net revenue for 2021, was 48%, compared to 45% in 2020.",
+                "supports": "full"
+            },
+            {
+                "doc_id": "2488_2021-12-25",
+                "paragraph_id": 43,
+                "text": "Gross margin, as a percentage of net revenue for 2021, was 48%, compared to 45% in 2020.",
+                "supports": "full"
+            }
+        ],
+        "type": "reasoning"
+    },
+    {
+        "id": "q_041",
+        "query": "Did AMD's gross margin account for more than 50% of net revenue in 2020?",
+        "company": "AMD",
+        "evidence": [
+            {
+                "doc_id": "2488_2020-12-26",
+                "paragraph_id": 3,
+                "text": "Gross margin, as a percentage of net revenue for 2020, was 45%, compared to 43% in 2019.",
+                "supports": "full"
+            },
+            {
+                "doc_id": "2488_2020-12-26",
+                "paragraph_id": 40,
+                "text": "Gross margin as a percentage of net revenue was 45% in 2020 compared to 43% in 2019.",
+                "supports": "full"
+            },
+            {
+                "doc_id": "2488_2021-12-25",
+                "paragraph_id": 3,
+                "text": "Gross margin, as a percentage of net revenue for 2021, was 48%, compared to 45% in 2020.",
+                "supports": "full"
+            },
+            {
+                "doc_id": "2488_2021-12-25",
+                "paragraph_id": 43,
+                "text": "Gross margin, as a percentage of net revenue for 2021, was 48%, compared to 45% in 2020.",
+                "supports": "full"
+            }
+        ],
+        "type": "reasoning"
+    },
+    {
+        "id": "q_042",
+        "query": "How did the company's liquidity position change from 2020 to 2021 when considering both cash levels and total debt?",
+        "company": "AMD",
+        "evidence": [
+            {
+                "doc_id": "2488_2021-12-25",
+                "paragraph_id": 3,
+                "text": "Cash, cash equivalents and short-term investments as of December 25, 2021 were $3.6 billion, compared to $2.3 billion at the end of 2020. The aggregate principal amount of total debt as of December 25, 2021 was $313 million, compared to $338 million as of December 26, 2020.",
+                "supports": "full"
+            }
+        ],
+        "type": "reasoning"
+    },
+    {
+        "id": "q_043",
+        "query": "What percentage of the total $4 billion repurchase authorization had been used by December 25, 2021?",
+        "company": "AMD",
+        "evidence": [
+            {
+                "doc_id": "2488_2021-12-25",
+                "paragraph_id": 9,
+                "text": "Due to our strong financial results and growing cash flow generation, in May 2021, our Board of Directors approved a stock repurchase program (Repurchase Program) to purchase up to $4 billion of our outstanding common stock in the open market. During the twelve months ended December 25, 2021, we repurchased 16.7 million shares of our common stock under the Repurchase Program, for a total cash outlay of $1.8 billion. As of December 25, 2021, $2.2 billion remained available for future stock repurchases under this program. The Repurchase Program does not obligate us to acquire any common stock, has no termination date and may be suspended or discontinued at any time.",
+                "supports": "full"
+            }
+        ],
+        "type": "reasoning"
+    },
+    {
+        "id": "q_044",
+        "query": "As of December 25, 2021, is the remaining $2.2 billion repurchase authorization consistent with the total program size and the amount already spent?",
+        "company": "AMD",
+        "evidence": [
+            {
+                "doc_id": "2488_2021-12-25",
+                "paragraph_id": 9,
+                "text": "Due to our strong financial results and growing cash flow generation, in May 2021, our Board of Directors approved a stock repurchase program (Repurchase Program) to purchase up to $4 billion of our outstanding common stock in the open market. During the twelve months ended December 25, 2021, we repurchased 16.7 million shares of our common stock under the Repurchase Program, for a total cash outlay of $1.8 billion. As of December 25, 2021, $2.2 billion remained available for future stock repurchases under this program. The Repurchase Program does not obligate us to acquire any common stock, has no termination date and may be suspended or discontinued at any time.",
+                "supports": "full"
+            }
+        ],
+        "type": "reasoning"
+    },
+    {
+        "id": "q_045",
+        "query": "What was the average price per share repurchased under the program in 2021?",
+        "company": "AMD",
+        "evidence": [
+            {
+                "doc_id": "2488_2021-12-25",
+                "paragraph_id": 9,
+                "text": "Due to our strong financial results and growing cash flow generation, in May 2021, our Board of Directors approved a stock repurchase program (Repurchase Program) to purchase up to $4 billion of our outstanding common stock in the open market. During the twelve months ended December 25, 2021, we repurchased 16.7 million shares of our common stock under the Repurchase Program, for a total cash outlay of $1.8 billion. As of December 25, 2021, $2.2 billion remained available for future stock repurchases under this program. The Repurchase Program does not obligate us to acquire any common stock, has no termination date and may be suspended or discontinued at any time.",
+                "supports": "full"
+            }
+        ],
+        "type": "reasoning"
+    },
+    {
+        "id": "q_046",
+        "query": "When did AMD complete its acquisition of Xilinx?",
+        "company": "AMD",
+        "evidence": [
+            {
+                "doc_id": "2488_2022-12-31",
+                "paragraph_id": 3,
+                "text": "2022 was a transformative year for AMD as we took several major steps that scaled and reshaped our business. In February 2022, we completed our strategic acquisition of Xilinx, Inc. (Xilinx) which expanded our technology and product portfolio to include adaptable hardware platforms that enable hardware acceleration and rapid innovation across a variety of technologies and established AMD in multiple embedded markets where we have traditionally not had a significant presence. We now offer Field Programmable Gate Arrays (FPGAs), Adaptive SoCs, and Adaptive Compute Acceleration Platform (ACAP) products. With the acquisition of Xilinx, we have access to a new set of markets and customers, further strengthening and diversifying our business model. In May 2022, we expanded our data center solutions capabilities with the acquisition of Pensando Systems, Inc. (Pensando). We now offer high-performance data processing units (DPUs) and a software stack that complements our existing products. With the Xilinx and Pensando acquisitions, we are well positioned to provide the industry\u2019s broadest set of leadership compute engines and accelerators to help enable best performance, security, flexibility and total cost of ownership for leading-edge data centers.",
+                "supports": "full"
+            }
+        ],
+        "type": "factoid"
+    },
+    {
+        "id": "q_047",
+        "query": "What capabilities did AMD add through the Xilinx and Pensando acquisitions?",
+        "company": "AMD",
+        "evidence": [
+            {
+                "doc_id": "2488_2022-12-31",
+                "paragraph_id": 3,
+                "text": "2022 was a transformative year for AMD as we took several major steps that scaled and reshaped our business. In February 2022, we completed our strategic acquisition of Xilinx, Inc. (Xilinx) which expanded our technology and product portfolio to include adaptable hardware platforms that enable hardware acceleration and rapid innovation across a variety of technologies and established AMD in multiple embedded markets where we have traditionally not had a significant presence. We now offer Field Programmable Gate Arrays (FPGAs), Adaptive SoCs, and Adaptive Compute Acceleration Platform (ACAP) products. With the acquisition of Xilinx, we have access to a new set of markets and customers, further strengthening and diversifying our business model. In May 2022, we expanded our data center solutions capabilities with the acquisition of Pensando Systems, Inc. (Pensando). We now offer high-performance data processing units (DPUs) and a software stack that complements our existing products. With the Xilinx and Pensando acquisitions, we are well positioned to provide the industry\u2019s broadest set of leadership compute engines and accelerators to help enable best performance, security, flexibility and total cost of ownership for leading-edge data centers.",
+                "supports": "full"
+            }
+        ],
+        "type": "factoid"
+    },
+    {
+        "id": "q_048",
+        "query": "How did AMD describe the combined benefit of the Xilinx and Pensando acquisitions for data center solutions?",
+        "company": "AMD",
+        "evidence": [
+            {
+                "doc_id": "2488_2022-12-31",
+                "paragraph_id": 3,
+                "text": "2022 was a transformative year for AMD as we took several major steps that scaled and reshaped our business. In February 2022, we completed our strategic acquisition of Xilinx, Inc. (Xilinx) which expanded our technology and product portfolio to include adaptable hardware platforms that enable hardware acceleration and rapid innovation across a variety of technologies and established AMD in multiple embedded markets where we have traditionally not had a significant presence. We now offer Field Programmable Gate Arrays (FPGAs), Adaptive SoCs, and Adaptive Compute Acceleration Platform (ACAP) products. With the acquisition of Xilinx, we have access to a new set of markets and customers, further strengthening and diversifying our business model. In May 2022, we expanded our data center solutions capabilities with the acquisition of Pensando Systems, Inc. (Pensando). We now offer high-performance data processing units (DPUs) and a software stack that complements our existing products. With the Xilinx and Pensando acquisitions, we are well positioned to provide the industry\u2019s broadest set of leadership compute engines and accelerators to help enable best performance, security, flexibility and total cost of ownership for leading-edge data centers.",
+                "supports": "full"
+            }
+        ],
+        "type": "factoid"
+    },
+    {
+        "id": "q_049",
+        "query": "Why did Analog Devices' revenue increase in China in fiscal 2020?",
+        "company": "Analog Devices",
+        "evidence": [
+            {
+                "doc_id": "6281_2020-10-31",
+                "paragraph_id": 13,
+                "text": "However, revenue in China increased in fiscal 2020 as compared to fiscal 2019 as a result of the region's relatively quick recovery from COVID-19 related shutdowns as compared to other regions, as well as increases in demand across our broad market customers and stable revenue in the Communications end market attributable to the 5G ramp up.",
+                "supports": "full"
+            }
+        ],
+        "type": "factoid"
+    },
+    {
+        "id": "q_050",
+        "query": "When did Analog Devices complete its acquisition of Maxim?",
+        "company": "Analog Devices",
+        "evidence": [
+            {
+                "doc_id": "6281_2021-10-30",
+                "paragraph_id": 5,
+                "text": "On August 26, 2021 (Acquisition Date), we completed the acquisition of Maxim Integrated Products, Inc. (Maxim), an independent manufacturer of innovative analog and mixed-signal products and technologies.",
+                "supports": "full"
+            }
+        ],
+        "type": "factoid"
+    },
+    {
+        "id": "q_051",
+        "query": "Did the final merger consideration for the Maxim Integrated acquisition on August 26, 2021, differ from the $23.0 billion estimate calculated on November 20, 2020? If so, by how much and why?",
+        "company": "Analog Devices",
+        "evidence": [
+            {
+                "doc_id": "6281_2020-10-31",
+                "paragraph_id": 5,
+                "text": "On July 12, 2020, we entered into a definitive agreement (the Merger Agreement) to acquire Maxim Integrated Products, Inc. (Maxim), an independent manufacturer of innovative analog and mixed-signal products and technologies. Under the terms of the Merger Agreement, Maxim stockholders will receive, for each outstanding share of Maxim common stock, 0.630 of a share of our common stock. The estimated merger consideration is approximately $23.0 billion based on the closing price of our common stock on November 20, 2020.",
+                "supports": "partial"
+            },
+            {
+                "doc_id": "6281_2021-10-30",
+                "paragraph_id": 5,
+                "text": "On August 26, 2021 (Acquisition Date), we completed the acquisition of Maxim Integrated Products, Inc. (Maxim), an independent manufacturer of innovative analog and mixed-signal products and technologies. Pursuant to the Agreement and Plan of Merger, dated as of July 12, 2020 (the Merger Agreement), Maxim stockholders received, for each outstanding share of Maxim common stock, 0.6300 of a share of the Company\u2019s common stock as of the Acquisition Date, for total consideration of approximately $28.0 billion of our common stock.",
+                "supports": "partial"
+            },
+            {
+                "doc_id": "6281_2022-10-29",
+                "paragraph_id": 5,
+                "text": "On August 26, 2021 (Acquisition Date), we completed the acquisition of Maxim Integrated Products, Inc. (Maxim), an independent manufacturer of innovative analog and mixed-signal products and technologies. Pursuant to the Agreement and Plan of Merger, dated as of July 12, 2020 (the Merger Agreement), Maxim stockholders received, for each outstanding share of Maxim common stock, 0.6300 of a share of the Company\u2019s common stock as of the Acquisition Date, for total consideration of approximately $28.0 billion of our common stock. The acquisition of Maxim is referred to as the Acquisition. The consolidated financial statements included in this Annual Report on Form 10-K include the financial results of Maxim prospectively from the Acquisition Date. See Note 6, Acquisitions, of the Notes to the Consolidated Financial Statements contained in Part II, Item 8 of this Annual Report on Form 10-K for further information.",
+                "supports": "partial"
+            }
+        ],
+        "type": "multi-hop"
+    },
+    {
+        "id": "q_052",
+        "query": "By how much did Analog Devices' current liabilities increase from fiscal 2020 to October 30, 2021?",
+        "company": "Analog Devices",
+        "evidence": [
+            {
+                "doc_id": "6281_2021-10-30",
+                "paragraph_id": 37,
+                "text": "Current liabilities increased to $2,770.3 million at October 30, 2021 from $1,365.0 million recorded at the end of fiscal 2020. The increase was primarily due to the Acquisition, including $516.7 million of Maxim debt obligations classified as current and $584.9 million of accrued liabilities.",
+                "supports": "full"
+            }
+        ],
+        "type": "reasoning"
+    },
+    {
+        "id": "q_053",
+        "query": "What was the remaining dollar amount authorized for Analog Devices' share repurchase program as of October 30, 2021?",
+        "company": "Analog Devices",
+        "evidence": [
+            {
+                "doc_id": "6281_2021-10-30",
+                "paragraph_id": 43,
+                "text": "As of October 30, 2021, $7.4 billion remained available for repurchase under the current authorized program.",
+                "supports": "full"
+            }
+        ],
+        "type": "factoid"
+    },
+    {
+        "id": "q_054",
+        "query": "What types of business areas did Archer-Daniels-Midland expand into through its 2019 acquisitions?",
+        "company": "Archer-Daniels-Midland",
+        "evidence": [
+            {
+                "doc_id": "7084_2019-12-31",
+                "paragraph_id": 6,
+                "text": "The Company\u2019s recent significant portfolio actions and announcements include: the acquisition in February 2019 of Neovia, a French-based global provider of value-added animal nutrition solutions, with 72 production facilities and a presence in 25 countries; the purchase in February 2019 of the remaining 50% interest owned by InVivo Group in the Gleadell Agriculture Ltd. joint venture in the United Kingdom; the acquisition in March 2019 of FCC, one of the world\u2019s largest producers of citrus oils and ingredients; the formal launch in March 2019 of GrainBridge LLC, a 50% joint venture with Cargill that will develop digital tools to help North American farmers consolidate information on production economics and grain marketing activities into a single digital platform; the acquisition in May 2019 of Ziegler, a leading European provider of natural citrus flavor ingredients; the sale in December 2019 of its equity investment in CIP; and the acquisition in January 2020 of Yerbalatina, a natural plant-based extracts and ingredients manufacturer in Brazil.",
+                "supports": "full"
+            }
+        ],
+        "type": "factoid"
+    },
+    {
+        "id": "q_055",
+        "query": "How did global and regional factors together contribute to the decline in Ag Services and Oilseeds operating profit for Archer-Daniels-Midland in 2019?",
+        "company": "Archer-Daniels-Midland",
+        "evidence": [
+            {
+                "doc_id": "7084_2019-12-31",
+                "paragraph_id": 29,
+                "text": "Ag Services and Oilseeds operating profit decreased 4%. Ag Services results were lower due to weaker North American grain margins and lower volumes, in part due to challenging weather conditions and the U.S.-China trade tensions. Results in the current period were negatively impacted by high water conditions in the first half of the year, which limited grain movement and sales in North America. Slow farmer selling and lower Chinese demand of South American origination, in part due to African swine fever, also impacted results. Crushing results were strong but down compared to the prior year. Lower executed crush margins around the globe drove lower results, partially offset by favorable timing effects of approximately $102 million from hedges entered in the prior year. Refined Products and Other results were up compared to the prior period primarily due to the retroactive biodiesel tax credit of $270 million for 2018 and 2019 recorded in the current year compared to $120 million for 2017 recorded in the prior year, strong demand, and higher results from equity investments. Wilmar results were lower year over year.",
+                "supports": "full"
+            }
+        ],
+        "type": "factoid"
+    },
+    {
+        "id": "q_056",
+        "query": "How did the reporting structure of ethanol-related operations change with the creation of VCP for Archer-Daniels-Midland in 2020?",
+        "company": "Archer-Daniels-Midland",
+        "evidence": [
+            {
+                "doc_id": "7084_2020-12-31",
+                "paragraph_id": 4,
+                "text": "Effective January 1, 2020, the Company started reporting its newly created dry mill ethanol subsidiary, Vantage Corn Processors (VCP), as a sub-segment within the Carbohydrate Solutions segment. VCP replaces the Bioproducts sub-segment which included the combined results of the Company\u2019s corn dry and wet mill ethanol operations. The wet mill ethanol operations that were previously reported in Bioproducts are now included in the Starches and Sweeteners sub-segment. In addition to dry mill ethanol production, VCP sells/brokers ADM\u2019s wet mill ethanol production as the sole marketer of ethanol produced at the Company\u2019s facilities. The change does not have an impact on the total results of the Carbohydrate Solutions segment. The Company\u2019s review of its strategic options related to VCP is ongoing.",
+                "supports": "full"
+            }
+        ],
+        "type": "factoid"
+    },
+    {
+        "id": "q_057",
+        "query": "What was Archer-Daniels-Midland's effective tax rate in 2020?",
+        "company": "Archer-Daniels-Midland",
+        "evidence": [
+            {
+                "doc_id": "7084_2020-12-31",
+                "paragraph_id": 19,
+                "text": "The Company\u2019s effective tax rate for 2020 was 5.4% compared to 13.2% for 2019.",
+                "supports": "full"
+            }
+        ],
+        "type": "factoid"
+    },
+    {
+        "id": "q_058",
+        "query": "In 2020, how did U.S. tax credits affect both Archer-Daniels-Midland's effective tax rate and its cost of products sold?",
+        "company": "Archer-Daniels-Midland",
+        "evidence": [
+            {
+                "doc_id": "7084_2020-12-31",
+                "paragraph_id": 19,
+                "text": "Income taxes of $101 million decreased $108 million. The Company\u2019s effective tax rate for 2020 was 5.4% compared to 13.2% for 2019. The change in rate was due primarily to changes in the geographic mix of earnings, foreign currency remeasurement, and adjustments to previously filed returns. The rates for 2020 and 2019 were also impacted by U.S. tax credits, mainly the railroad maintenance tax credit, which had an offsetting expense in cost of products sold.",
+                "supports": "full"
+            }
+        ],
+        "type": "factoid"
+    },
+    {
+        "id": "q_059",
+        "query": "Which company did Archer-Daniels-Midland acquire in April 2021?",
+        "company": "Archer-Daniels-Midland",
+        "evidence": [
+            {
+                "doc_id": "7084_2021-12-31",
+                "paragraph_id": 2,
+                "text": "The Company\u2019s recent significant portfolio actions and announcements include: the announcement in March 2021 of a new ADM policy to protect forests, biodiversity and communities, furthering the Company\u2019s commitment to sustainable, ethical, and responsible production; the announcement in April 2021 of the resumption of dry mill ethanol production; the acquisition in April 2021 of Golden Farm Production & Commerce Company Limited; the announcement in May 2021 of ADM\u2019s participation as a signatory to the German Charter for Diversity in the Workplace which aims to advance the recognition and inclusion of diversity in companies; the announcement in May 2021 of a plan to build a dedicated soybean crushing plant and refinery in North Dakota to meet fast-growing demand from food, feed, industrial and biofuel customers, including producers of renewable diesel, which is expected to be open in 2023; the announcement in June 2021 of ADM Ventures, the corporate venture capital arm of ADM, joining the Genesis Consortium, a global alliance of venture capital firms and corporations dedicated to supporting startups that leverage biology to promote human and planetary health; the acquisition in September 2021 of a 75% majority stake in P4, premier providers of private label pet treats and supplements; the announcement in September 2021 of a memorandum of understanding with LG Chem, a leading global diversified chemical company, to explore US-based production of lactic acid to meet growing demand for a wide variety of plant-based products, including bioplastics, through the creation of two joint ventures; the unveiling in September 2021 of a state-of-the-art, fully automated flavor production facility situated in Pinghu, Zhejiang Province, China; the announcement in October 2021 of an agreement with Qingdao Vland Biotech Group Co., Ltd., a leading producer of enzymes and probiotics, to form a joint venture, subject to regulatory approval, to manufacture and sell human probiotics to serve growing Chinese demand; the announcement in October 2021 of an equity investment in Acies Bio, a Slovenia-based biotechnology company specializing in research and development and manufacturing services for developing and scaling synthetic biology and precision fermentation technologies for food, agriculture, and industrial applications; the announcement in October 2021 of a memorandum of understanding with Gevo, Inc., a pioneer in transforming renewable energy into low carbon, energy-dense liquid hydrocarbons, to support the production of up to 500 million gallons of sustainable aviation fuel and other low carbon-footprint hydrocarbon fuels; the announcement in November 2021 of an agreement to form a 50-50 joint venture with Asia Sustainable Foods Platform, a wholly-owned company of Temasek, to provide technology development and precision fermentation for companies serving the growing consumer demand for a wide variety of bio-based products, including alternative protein, in Singapore and the wider Asia-Pacific region; the announcement in November 2021 of an equity investment in Farmers Business Network, a global farmer-to-farmer network and AgTech company, and a letter of intent to expand the existing relationship through a wide range of potential future areas of cooperation; the acquisition in November 2021 of Deerland, a leader in probiotic, prebiotic, and enzyme technology; the acquisition in November 2021 of Sojaprotein, a leading European provider of non-GMO soy ingredients; the sale in November 2021 of the Company\u2019s ethanol production complex in Peoria, Illinois to BioUrja Group; the formation in December 2021 of a joint venture with Marathon Petroleum Corp. for the production of soybean oil to supply rapidly growing demand for renewable diesel fuel; the acquisition in December 2021 of Flavor Infusion International, S.A., a full-range provider of flavor and specialty ingredient solutions for customers across Latin America and the Caribbean; and the acquisition in February 2022 of Comhan, a leading South African flavour distributor.",
+                "supports": "full"
+            }
+        ],
+        "type": "factoid"
+    },
+    {
+        "id": "q_060",
+        "query": "Which ADM acquisitions, partnerships, or initiatives in 2021 were related to sustainable, renewable, or bio-based products?",
+        "company": "Archer-Daniels-Midland",
+        "evidence": [
+            {
+                "doc_id": "7084_2021-12-31",
+                "paragraph_id": 2,
+                "text": "The Company\u2019s recent significant portfolio actions and announcements include: the announcement in March 2021 of a new ADM policy to protect forests, biodiversity and communities, furthering the Company\u2019s commitment to sustainable, ethical, and responsible production; the announcement in April 2021 of the resumption of dry mill ethanol production; the acquisition in April 2021 of Golden Farm Production & Commerce Company Limited; the announcement in May 2021 of ADM\u2019s participation as a signatory to the German Charter for Diversity in the Workplace which aims to advance the recognition and inclusion of diversity in companies; the announcement in May 2021 of a plan to build a dedicated soybean crushing plant and refinery in North Dakota to meet fast-growing demand from food, feed, industrial and biofuel customers, including producers of renewable diesel, which is expected to be open in 2023; the announcement in June 2021 of ADM Ventures, the corporate venture capital arm of ADM, joining the Genesis Consortium, a global alliance of venture capital firms and corporations dedicated to supporting startups that leverage biology to promote human and planetary health; the acquisition in September 2021 of a 75% majority stake in P4, premier providers of private label pet treats and supplements; the announcement in September 2021 of a memorandum of understanding with LG Chem, a leading global diversified chemical company, to explore US-based production of lactic acid to meet growing demand for a wide variety of plant-based products, including bioplastics, through the creation of two joint ventures; the unveiling in September 2021 of a state-of-the-art, fully automated flavor production facility situated in Pinghu, Zhejiang Province, China; the announcement in October 2021 of an agreement with Qingdao Vland Biotech Group Co., Ltd., a leading producer of enzymes and probiotics, to form a joint venture, subject to regulatory approval, to manufacture and sell human probiotics to serve growing Chinese demand; the announcement in October 2021 of an equity investment in Acies Bio, a Slovenia-based biotechnology company specializing in research and development and manufacturing services for developing and scaling synthetic biology and precision fermentation technologies for food, agriculture, and industrial applications; the announcement in October 2021 of a memorandum of understanding with Gevo, Inc., a pioneer in transforming renewable energy into low carbon, energy-dense liquid hydrocarbons, to support the production of up to 500 million gallons of sustainable aviation fuel and other low carbon-footprint hydrocarbon fuels; the announcement in November 2021 of an agreement to form a 50-50 joint venture with Asia Sustainable Foods Platform, a wholly-owned company of Temasek, to provide technology development and precision fermentation for companies serving the growing consumer demand for a wide variety of bio-based products, including alternative protein, in Singapore and the wider Asia-Pacific region; the announcement in November 2021 of an equity investment in Farmers Business Network, a global farmer-to-farmer network and AgTech company, and a letter of intent to expand the existing relationship through a wide range of potential future areas of cooperation; the acquisition in November 2021 of Deerland, a leader in probiotic, prebiotic, and enzyme technology; the acquisition in November 2021 of Sojaprotein, a leading European provider of non-GMO soy ingredients; the sale in November 2021 of the Company\u2019s ethanol production complex in Peoria, Illinois to BioUrja Group; the formation in December 2021 of a joint venture with Marathon Petroleum Corp. for the production of soybean oil to supply rapidly growing demand for renewable diesel fuel; the acquisition in December 2021 of Flavor Infusion International, S.A., a full-range provider of flavor and specialty ingredient solutions for customers across Latin America and the Caribbean; and the acquisition in February 2022 of Comhan, a leading South African flavour distributor.",
+                "supports": "full"
+            }
+        ],
+        "type": "factoid"
+    },
+    {
+        "id": "q_061",
+        "query": "In 2022, approximately how many employees does ADM have in Ukraine?",
+        "company": "Archer-Daniels-Midland",
+        "evidence": [
+            {
+                "doc_id": "7084_2022-12-31",
+                "paragraph_id": 13,
+                "text": "ADM employs approximately 640 people in Ukraine and operates an oilseeds crushing plant, a grain port terminal, inland and river silos, and a trading office.",
+                "supports": "full"
+            }
+        ],
+        "type": "factoid"
+    },
+    {
+        "id": "q_062",
+        "query": "While ADM's Ukraine and Russian operations historically accounted for less than 1.0% of consolidated revenues, what indirect impacts of the February 24, 2022 invasion could still negatively affect its future operating results?",
+        "company": "Archer-Daniels-Midland",
+        "evidence": [
+            {
+                "doc_id": "7084_2022-12-31",
+                "paragraph_id": 14,
+                "text": "On February 24, 2022, Russian troops invaded Ukraine. While the Company\u2019s Ukraine and Russian operations have historically represented less than 1.0% of consolidated revenues, the direct and indirect impacts of the ongoing military action could negatively affect ADM\u2019s future operating results. The conflict in Ukraine has created disruptions in global supply chains and has created dislocations of key agricultural commodities. The indirect impact of these dislocations on the Company\u2019s operating results will be a function of a number of variables including supply and demand responses from the rest of the world as well as the length of the conflict and the condition of the agricultural industry and export infrastructure after the conflict ends.",
+                "supports": "full"
+            }
+        ],
+        "type": "factoid"
+    },
+    {
+        "id": "q_063",
+        "query": "What percentage did the largest client of Omnicom Group represent of the company's revenue in 2019?",
+        "company": "Omnicom Group",
+        "evidence": [
+            {
+                "doc_id": "29989_2019-12-31",
+                "paragraph_id": 2,
+                "text": "In 2019, our largest client represented 3.0% of revenue and our 100 largest clients, which represent many of the world's major marketers, represented approximately 51% of revenue.",
+                "supports": "full"
+            }
+        ],
+        "type": "factoid"
+    },
+    {
+        "id": "q_064",
+        "query": "What was the negative impact of COVID-19 on Omnicom Group in 2020?",
+        "company": "Omnicom Group",
+        "evidence": [
+            {
+                "doc_id": "29989_2020-12-31",
+                "paragraph_id": 1,
+                "text": "In 2020, the COVID-19 pandemic negatively impacted our business and results of operations. Efforts to mitigate the impact of the pandemic, including government actions to restrict travel, limit public gatherings, shelter-in-place orders and mandatory closures of businesses, resulted in many of our clients reducing or suspending their spending for our advertising, marketing and corporate communication services. As a result, for the year ended December 31, 2020, revenue decreased $1,782.6 million, or 11.9%, compared to 2019, primarily due to the impact of the COVID-19 pandemic. We anticipate that the negative impact from the pandemic on our revenue will continue through the first quarter of 2021 as compared to the prior year period. However, we expect organic revenue growth for the first half of 2021. The impact of the COVID-19 pandemic on our revenue has been, and may continue to be, material, depending on several factors, including the potential for prolonged or additional governmental actions to mitigate the effects of the pandemic. It is possible that the COVID-19 pandemic will accelerate certain trends that began pre-pandemic, particularly those relating to online commerce, brand building and how we deploy our personnel. We expect that some of these trends will benefit our agencies and provide revenue growth opportunities, as well as increasing flexibility with respect to our use of physical locations and our cost structure, but some trends may negatively affect us including potential disruption by new participants and technologies.",
+                "supports": "partial"
+            },
+            {
+                "doc_id": "29989_2020-12-31",
+                "paragraph_id": 2,
+                "text": "In response to the impact of the COVID-19 pandemic, in the second quarter of 2020, we took actions to align our cost structure and reduce our workforce and facility requirements and continued the review of businesses for disposal and assets for impairment. As a result, we recorded a pre-tax charge of $277.9 million, which is comprised of incremental severance of $150.0 million, real estate operating lease right-of-use, or ROU, asset and other asset impairment charges of $55.8 million, other exit costs of $47.0 million and dispositions and other charges of $25.1 million (see Note 1 to the consolidated financial statements). These actions reduced headcount by over 6,000 and reduced the related facility requirements, which should result in significant reductions in future operating expenses.",
+                "supports": "partial"
+            },
+            {
+                "doc_id": "29989_2020-12-31",
+                "paragraph_id": 3,
+                "text": "In addition, during 2020, we reduced salary and service costs by $162.6 million related to reimbursements and tax credits under government programs in several countries, including the Coronavirus Aid, Relief, and Economic Security Act, or the CARES Act, in the United States, the Kurzarbeit program in Germany, and other government reimbursement programs in the U.K., France, Canada and other jurisdictions (see Note 1 to the consolidated financial statements). Further, in the fourth quarter of 2020, we recorded asset impairment charges of $55.8 million associated with underperforming assets, which is included in salary and service costs.",
+                "supports": "partial"
+            },
+            {
+                "doc_id": "29989_2020-12-31",
+                "paragraph_id": 4,
+                "text": "The COVID-19 pandemic negatively impacted most of our clients' businesses. As a result, clients have cut costs, including postponing or reducing marketing communication expenditures. While certain industries such as healthcare and pharmaceuticals, technology and telecommunications, financial services and consumer products have been less affected, as long as the COVID-19 pandemic remains a threat, global economic conditions continue to be volatile and such uncertainty cuts across all clients, industries and geographies. Overall, while we have a diversified portfolio of service offerings, clients and geographies, demand for our services can be expected to continue to be adversely affected as marketers reduce expenditures in the short term due to the uncertain impact of the pandemic on the global economy. We expect global economic performance and our performance to vary by geography until the impact of the COVID-19 pandemic on the global economy moderates.",
+                "supports": "partial"
+            }
+        ],
+        "type": "multi-hop"
+    },
+    {
+        "id": "q_065",
+        "query": "What percentage of revenue did Omnicom Group's largest client represent in 2020?",
+        "company": "Omnicom Group",
+        "evidence": [
+            {
+                "doc_id": "29989_2020-12-31",
+                "paragraph_id": 7,
+                "text": "As a leading global advertising, marketing and corporate communications company, we operate in all major markets and have a large and diverse client base. In 2020, our largest client represented 3.4% of revenue and our 100 largest clients, which represent many of the world's major marketers, represented approximately 54% of revenue. Our clients operate in virtually every sector of the global economy with no one industry representing more than 16% of our revenue in 2020. Although our revenue is generally balanced between the United States and international markets and we have a large and diverse client base, we are not immune to general economic downturns.",
+                "supports": "full"
+            }
+        ],
+        "type": "factoid"
+    },
+    {
+        "id": "q_066",
+        "query": "For Omnicom Group, how much greater was the revenue contribution of the top 100 clients compared to the largest single client in 2020?",
+        "company": "Omnicom Group",
+        "evidence": [
+            {
+                "doc_id": "29989_2020-12-31",
+                "paragraph_id": 7,
+                "text": "As a leading global advertising, marketing and corporate communications company, we operate in all major markets and have a large and diverse client base. In 2020, our largest client represented 3.4% of revenue and our 100 largest clients, which represent many of the world's major marketers, represented approximately 54% of revenue. Our clients operate in virtually every sector of the global economy with no one industry representing more than 16% of our revenue in 2020. Although our revenue is generally balanced between the United States and international markets and we have a large and diverse client base, we are not immune to general economic downturns.",
+                "supports": "full"
+            }
+        ],
+        "type": "reasoning"
+    },
+    {
+        "id": "q_067",
+        "query": "What was the interest rate of the Notes issued by the company in February 2020?",
+        "company": "Omnicom Group",
+        "evidence": [
+            {
+                "doc_id": "29989_2020-12-31",
+                "paragraph_id": 93,
+                "text": "In February 2020, we issued $600 million of the 2.45% Notes.",
+                "supports": "full"
+            },
+            {
+                "doc_id": "29989_2020-12-31",
+                "paragraph_id": 112,
+                "text": "On February 19, 2020, we issued $600 million of the 2.45% Notes.",
+                "supports": "full"
+            }
+        ],
+        "type": "factoid"
+    },
+    {
+        "id": "q_068",
+        "query": "what was Interpublic Group's diluted EPS in 2017?",
+        "company": "Interpublic Group",
+        "evidence": [
+            {
+                "doc_id": "51644_2019-12-31",
+                "paragraph_id": 38,
+                "text": "Diluted earnings per share for the years ended December 31, 2019, 2018 and 2017 were $1.68, $1.59 and $1.40 per share, respectively.",
+                "supports": "full"
+            }
+        ],
+        "type": "reasoning"
+    },
+    {
+        "id": "q_069",
+        "query": "How many acquisitions did Adobe make in 2021?",
+        "company": "Adobe Inc.",
+        "evidence": [
+            {
+                "doc_id": "796343_2021-12-03",
+                "paragraph_id": 12,
+                "text": "In the fourth quarter of fiscal 2021, we completed the acquisition of Frame.io, a privately held company that provides a cloud-based video collaboration platform, for approximately $1.18 billion and we began integrating Frame.io into our Digital Media reportable segment. In the first quarter of fiscal 2021, we completed the acquisition of Workfront, a privately held company that provides a workflow platform, for approximately $1.52 billion in cash consideration and we began integrating Workfront into our Digital Experience reportable segment.",
+                "supports": "full"
+            },
+            {
+                "doc_id": "796343_2022-12-02",
+                "paragraph_id": 12,
+                "text": "In the fourth quarter of fiscal 2021, we completed the acquisition of Frame.io, a privately held company that provides a cloud-based video collaboration platform, for approximately $1.24 billion and we began integrating Frame.io into our Digital Media reportable segment. In the first quarter of fiscal 2021, we completed the acquisition of Workfront, a privately held company that provides a workflow platform, for approximately $1.52 billion in cash consideration and we began integrating Workfront into our Digital Experience reportable segment. See Note 3 of our Notes to Consolidated Financial Statements for further information regarding these acquisitions.",
+                "supports": "full"
+            }
+        ],
+        "type": "reasoning"
+    },
+    {
+        "id": "q_070",
+        "query": "By how much percentage did Costco's gross margin change in 2020 compared to 2019?",
+        "company": "Costco",
+        "evidence": [
+            {
+                "doc_id": "909832_2020-08-30",
+                "paragraph_id": 14,
+                "text": "Gross margin percentage increased 18 basis points, driven primarily by certain core merchandise categories, partially offset by certain ancillary and other businesses, which were negatively impacted by COVID-19 related closures or restrictions;",
+                "supports": "full"
+            },
+            {
+                "doc_id": "909832_2020-08-30",
+                "paragraph_id": 28,
+                "text": "Total gross margin percentage increased 18 basis points compared to 2019.",
+                "supports": "full"
+            }
+        ],
+        "type": "factoid"
+    },
+    {
+        "id": "q_071",
+        "query": "How many shares did Costco buy back in fiscal 2023?",
+        "company": "Costco",
+        "evidence": [
+            {
+                "doc_id": "909832_2023-09-03",
+                "paragraph_id": 44,
+                "text": "During 2023 and 2022, we repurchased 1,341,000 and 863,000 shares of common stock, at average prices of $504.68 and $511.46, totaling approximately $677 and $442.",
+                "supports": "full"
+            }
+        ],
+        "type": "factoid"
+    },
+    {
+        "id": "q_072",
+        "query": "What was Nvidia's revenue in fiscal year 2019?",
+        "company": "Nvidia",
+        "evidence": [
+            {
+                "doc_id": "1045810_2020-01-26",
+                "paragraph_id": 6,
+                "text": "Revenue for fiscal year 2020 was $10.92 billion, down 7% from a year earlier.",
+                "supports": "full"
+            }
+        ],
+        "type": "reasoning"
+    },
+    {
+        "id": "q_073",
+        "query": "Which NVIDIA platform introduced a system first built on the company's Ampere generation GPUs?",
+        "company": "Nvidia",
+        "evidence": [
+            {
+                "doc_id": "1045810_2021-01-31",
+                "paragraph_id": 27,
+                "text": "In our Data Center platform, we announced the NVIDIA A100 Tensor Core GPU and DGX A100, the first products based on the NVIDIA Ampere architecture",
+                "supports": "full"
+            }
+        ],
+        "type": "factoid"
+    },
+    {
+        "id": "q_074",
+        "query": "In fiscal year 2023, what alternative accelerator was provided when Nvidia's flagship AI training processors became restricted for export to China?",
+        "company": "Nvidia",
+        "evidence": [
+            {
+                "doc_id": "1045810_2023-01-29",
+                "paragraph_id": 10,
+                "text": "During the third quarter of fiscal year 2023, the USG announced new license requirements that, with certain exceptions, impact exports to China (including Hong Kong and Macau) and Russia of our A100 and H100 integrated circuits, DGX or any other systems or boards which incorporate A100 or H100 integrated circuits and our A100X. We are required to transition certain operations out of China (including Hong Kong), including research and development and supply and distribution operations. We have engaged with customers in China to provide alternative products not subject to the new license requirements, such as our new A800 offering.",
+                "supports": "full"
+            }
+        ],
+        "type": "factoid"
+    },
+    {
+        "id": "q_075",
+        "query": "Which integrated circuits were affected by the new US license requirements in fiscal year 2023?",
+        "company": "Nvidia",
+        "evidence": [
+            {
+                "doc_id": "1045810_2023-01-29",
+                "paragraph_id": 10,
+                "text": "During the third quarter of fiscal year 2023, the USG announced new license requirements that, with certain exceptions, impact exports to China (including Hong Kong and Macau) and Russia of our A100 and H100 integrated circuits, DGX or any other systems or boards which incorporate A100 or H100 integrated circuits and our A100X. We are required to transition certain operations out of China (including Hong Kong), including research and development and supply and distribution operations. We have engaged with customers in China to provide alternative products not subject to the new license requirements, such as our new A800 offering.",
+                "supports": "full"
+            }
+        ],
+        "type": "factoid"
+    },
+    {
+        "id": "q_076",
+        "query": "Which Nvidia chips became subject to newly announced export controls in fiscal year 2023?",
+        "company": "Nvidia",
+        "evidence": [
+            {
+                "doc_id": "1045810_2023-01-29",
+                "paragraph_id": 10,
+                "text": "During the third quarter of fiscal year 2023, the USG announced new license requirements that, with certain exceptions, impact exports to China (including Hong Kong and Macau) and Russia of our A100 and H100 integrated circuits, DGX or any other systems or boards which incorporate A100 or H100 integrated circuits and our A100X. We are required to transition certain operations out of China (including Hong Kong), including research and development and supply and distribution operations. We have engaged with customers in China to provide alternative products not subject to the new license requirements, such as our new A800 offering.",
+                "supports": "full"
+            }
+        ],
+        "type": "factoid"
+    },
+    {
+        "id": "q_077",
+        "query": "What types of services continued to drive consulting revenue for Accenture in fiscal 2020?",
+        "company": "Accenture",
+        "evidence": [
+            {
+                "doc_id": "1467373_2020-08-31",
+                "paragraph_id": 10,
+                "text": "In our consulting business, revenues for fiscal 2020 were flat in U.S. dollars and increased 2% in local currency compared to fiscal 2019. This included the impact of a decline in reimbursable travel costs, which reduced consulting revenues approximately 2%. Consulting revenue growth in local currency in fiscal 2020 was led by strong growth in Growth Markets and modest growth in North America, partially offset by a modest decline in Europe. Our consulting revenue continues to be driven by digital-, cloud- and security-related services and assisting clients with the adoption of new technologies. In addition, clients continue to be focused on initiatives designed to deliver cost savings and operational efficiency, as well as projects to integrate their global operations and grow and transform their businesses.",
+                "supports": "full"
+            }
+        ],
+        "type": "factoid"
+    },
+    {
+        "id": "q_078",
+        "query": "How much did Accenture's diluted EPS increase in fiscal 2021 compared to fiscal 2020?",
+        "company": "Accenture",
+        "evidence": [
+            {
+                "doc_id": "1467373_2021-08-31",
+                "paragraph_id": 23,
+                "text": "Diluted earnings per share were $9.16 for fiscal 2021, compared with $7.89 for fiscal 2020.",
+                "supports": "full"
+            },
+            {
+                "doc_id": "1467373_2021-08-31",
+                "paragraph_id": 61,
+                "text": "Diluted earnings per share were $9.16 for fiscal 2021, compared with $7.89 for fiscal 2020.",
+                "supports": "full"
+            }
+        ],
+        "type": "reasoning"
+    },
+    {
+        "id": "q_079",
+        "query": "How much did Accenture's diluted EPS increase in fiscal 2021 compared to fiscal 2019?",
+        "company": "Accenture",
+        "evidence": [
+            {
+                "doc_id": "1467373_2020-08-31",
+                "paragraph_id": 20,
+                "text": "Diluted earnings per share were $7.89 for fiscal 2020, compared with $7.36 for fiscal 2019.",
+                "supports": "partial"
+            },
+            {
+                "doc_id": "1467373_2020-08-31",
+                "paragraph_id": 61,
+                "text": "Diluted earnings per share were $7.89 for fiscal 2020, compared with $7.36 for fiscal 2019.",
+                "supports": "partial"
+            },
+            {
+                "doc_id": "1467373_2021-08-31",
+                "paragraph_id": 23,
+                "text": "Diluted earnings per share were $9.16 for fiscal 2021, compared with $7.89 for fiscal 2020.",
+                "supports": "partial"
+            },
+            {
+                "doc_id": "1467373_2021-08-31",
+                "paragraph_id": 61,
+                "text": "Diluted earnings per share were $9.16 for fiscal 2021, compared with $7.89 for fiscal 2020.",
+                "supports": "partial"
+            }
+        ],
+        "type": "multi-hop"
+    },
+    {
+        "id": "q_080",
+        "query": "When did the Board of Directors of Electronic Arts approve the 2023 Restructuring Plan?",
+        "company": "Electronic Arts",
+        "evidence": [
+            {
+                "doc_id": "712515_2023-03-31",
+                "paragraph_id": 24,
+                "text": "In March 2023, our Board of Directors approved a restructuring plan (the \"2023 Restructuring Plan\" or the \"Plan\") focused on prioritizing investments to the Company's growth opportunities and optimizing its real estate portfolio.",
+                "supports": "full"
+            }
+        ],
+        "type": "factoid"
+    },
+    {
+        "id": "q_081",
+        "query": "What were the primary objectives of Electronic Arts' 2023 Restructuring Plan?",
+        "company": "Electronic Arts",
+        "evidence": [
+            {
+                "doc_id": "712515_2023-03-31",
+                "paragraph_id": 24,
+                "text": "In March 2023, our Board of Directors approved a restructuring plan (the \"2023 Restructuring Plan\" or the \"Plan\") focused on prioritizing investments to the Company's growth opportunities and optimizing its real estate portfolio. The Plan includes actions driven by portfolio rationalization, including intellectual property impairment charges and headcount reductions, in addition to office space reductions. The actions associated with the Plan are expected to be substantially complete by September 30, 2023.",
+                "supports": "full"
+            }
+        ],
+        "type": "factoid"
+    },
+    {
+        "id": "q_082",
+        "query": "How did Walmart's ownership in PhonePe change in December 2022?",
+        "company": "Walmart",
+        "evidence": [
+            {
+                "doc_id": "104169_2023-01-31",
+                "paragraph_id": 10,
+                "text": "In December 2022, we increased our ownership in PhonePe as part of the separation from our majority-owned Flipkart subsidiary.",
+                "supports": "full"
+            }
+        ],
+        "type": "factoid"
+    },
+    {
+        "id": "q_083",
+        "query": "What operational changes did Walmart make in Africa in December 2022?",
+        "company": "Walmart",
+        "evidence": [
+            {
+                "doc_id": "104169_2023-01-31",
+                "paragraph_id": 9,
+                "text": "In November 2022, we completed the buyout of the noncontrolling interest shareholders of our Massmart subsidiary (Refer to Note 3) and in December 2022, we exited operations in certain countries in Africa.",
+                "supports": "full"
+            }
+        ],
+        "type": "factoid"
+    },
+    {
+        "id": "q_084",
+        "query": "What factor negatively affected the growth in Sam's Club comparable sales in fiscal 2023?",
+        "company": "Walmart",
+        "evidence": [
+            {
+                "doc_id": "104169_2023-01-31",
+                "paragraph_id": 22,
+                "text": "Comparable sales at Sam's Club increased 14.6% and 15.0% in fiscal 2023 and 2022, respectively. For fiscal 2023, Sam's Club comparable sales benefited from growth in transactions and average ticket and included higher inflation impacts in certain merchandise categories. Sam's Club comparable sales for fiscal 2022 benefited from growth in transactions and average ticket and was aided by consumer spending due to government stimulus, and also included some higher inflation impacts in certain merchandise categories compared to recent years. The growth in comparable sales was partially offset by our decision to remove tobacco from certain club locations. Sam's Club eCommerce sales positively contributed approximately 0.8% and 1.3% to comparable sales for fiscal 2023 and 2022, respectively.",
+                "supports": "full"
+            }
+        ],
+        "type": "factoid"
+    },
+    {
+        "id": "q_085",
+        "query": "Why did Walmart's free cash flow decline in fiscal 2020 compared to fiscal 2019?",
+        "company": "Walmart",
+        "evidence": [
+            {
+                "doc_id": "104169_2020-01-31",
+                "paragraph_id": 26,
+                "text": "We define free cash flow as net cash provided by operating activities in a period minus payments for property and equipment made in that period. We had net cash provided by operating activities of $25.3 billion, $27.8 billion and $28.3 billion for fiscal 2020, 2019 and 2018, respectively. We generated free cash flow of $14.6 billion, $17.4 billion and $18.3 billion for fiscal 2020, 2019 and 2018, respectively. Net cash provided by operating activities for fiscal 2020 declined when compared to fiscal 2019 primarily due to the contribution to our Asda pension plan in anticipation of its future settlement, the inclusion of a full year of Flipkart operations, and the timing of vendor payments. Free cash flow for fiscal 2020 declined when compared to fiscal 2019 due to the same reasons as the decline in net cash provided by operating activities, as well as $0.4 billion in increased capital expenditures. Net cash provided by operating activities for fiscal 2019 declined when compared to fiscal 2018 was primarily due to timing of vendor payments, partially offset by lower tax payments mainly resulting from the Tax Act and the timing of tax payments. Free cash flow for fiscal 2019 declined when compared to fiscal 2018 due to the same reasons as the decline in net cash provided by operating activities, as well as $0.3 billion in increased capital expenditures.",
+                "supports": "full"
+            }
+        ],
+        "type": "factoid"
+    },
+    {
+        "id": "q_086",
+        "query": "What impact did Flipkart operations and the Asda pension contribution have on Walmart's fiscal 2020 cash flow?",
+        "company": "Walmart",
+        "evidence": [
+            {
+                "doc_id": "104169_2020-01-31",
+                "paragraph_id": 26,
+                "text": "We define free cash flow as net cash provided by operating activities in a period minus payments for property and equipment made in that period. We had net cash provided by operating activities of $25.3 billion, $27.8 billion and $28.3 billion for fiscal 2020, 2019 and 2018, respectively. We generated free cash flow of $14.6 billion, $17.4 billion and $18.3 billion for fiscal 2020, 2019 and 2018, respectively. Net cash provided by operating activities for fiscal 2020 declined when compared to fiscal 2019 primarily due to the contribution to our Asda pension plan in anticipation of its future settlement, the inclusion of a full year of Flipkart operations, and the timing of vendor payments. Free cash flow for fiscal 2020 declined when compared to fiscal 2019 due to the same reasons as the decline in net cash provided by operating activities, as well as $0.4 billion in increased capital expenditures. Net cash provided by operating activities for fiscal 2019 declined when compared to fiscal 2018 was primarily due to timing of vendor payments, partially offset by lower tax payments mainly resulting from the Tax Act and the timing of tax payments. Free cash flow for fiscal 2019 declined when compared to fiscal 2018 due to the same reasons as the decline in net cash provided by operating activities, as well as $0.3 billion in increased capital expenditures.",
+                "supports": "full"
+            }
+        ],
+        "type": "factoid"
+    },
+    {
+        "id": "q_087",
+        "query": "What were the main drivers of Marriott's hotel signings in 2022, including the contribution of Select brands, longer-stay brands, luxury properties, and conversions?",
+        "company": "Marriott International",
+        "evidence": [
+            {
+                "doc_id": "1048286_2022-12-31",
+                "paragraph_id": 15,
+                "text": "At year-end 2022, we had more than 496,000 hotel rooms in our development pipeline, which includes approximately 199,000 hotel rooms under construction and roughly 22,300 hotel rooms approved for development but not yet under signed contracts. Over half of the rooms in our development pipeline are outside U.S. & Canada. In 2022, we signed 726 new management and franchise agreements, representing nearly 108,000 rooms, of which approximately half of the rooms are located outside U.S. & Canada. Our Select hotel brands continued to be a key growth driver globally with 523 hotel properties signed during 2022. In particular, our longer stay brands, which include Element Hotels, Residence Inn, and TownePlace Suites, accounted for 30 percent of the Company\u2019s signings in 2022. In addition, contracts signed in 2022 reflected the Company\u2019s strength in the luxury tier, with 42 luxury hotel agreements signed, representing nearly 8,000 rooms. Conversions accounted for nearly 20 percent of rooms signings in 2022.",
+                "supports": "full"
+            }
+        ],
+        "type": "factoid"
+    },
+    {
+        "id": "q_088",
+        "query": "How did Marriott balance growth across different segments in 2022, including longer-stay brands, luxury hotels, and conversion properties?",
+        "company": "Marriott International",
+        "evidence": [
+            {
+                "doc_id": "1048286_2022-12-31",
+                "paragraph_id": 15,
+                "text": "At year-end 2022, we had more than 496,000 hotel rooms in our development pipeline, which includes approximately 199,000 hotel rooms under construction and roughly 22,300 hotel rooms approved for development but not yet under signed contracts. Over half of the rooms in our development pipeline are outside U.S. & Canada. In 2022, we signed 726 new management and franchise agreements, representing nearly 108,000 rooms, of which approximately half of the rooms are located outside U.S. & Canada. Our Select hotel brands continued to be a key growth driver globally with 523 hotel properties signed during 2022. In particular, our longer stay brands, which include Element Hotels, Residence Inn, and TownePlace Suites, accounted for 30 percent of the Company\u2019s signings in 2022. In addition, contracts signed in 2022 reflected the Company\u2019s strength in the luxury tier, with 42 luxury hotel agreements signed, representing nearly 8,000 rooms. Conversions accounted for nearly 20 percent of rooms signings in 2022.",
+                "supports": "full"
+            }
+        ],
+        "type": "factoid"
+    },
+    {
+        "id": "q_089",
+        "query": "What actions did 3M take in 2022 in response to the Russia-Ukraine conflict?",
+        "company": "3M",
+        "evidence": [
+            {
+                "doc_id": "66740_2022-12-31",
+                "paragraph_id": 20,
+                "text": "3M is also impacted by the Russia-Ukraine conflict. In light of a number of factors, 3M suspended operations of its subsidiaries in Russia in March 2022, the net sales of which were less than one percent of 3M\u2019s consolidated net sales for 2021. Further, in September 2022, management committed to a plan to exit and dispose of the related net assets through an intended sale of the subsidiaries. The associated charge in 2022 related to this action is further discussed in Note 15. 3M also has other operations that source certain raw materials from suppliers in Russia and have experienced related supply disruption due to the conflict. Further supply disruption could lead to downstream customer impacts.",
+                "supports": "full"
+            }
+        ],
+        "type": "factoid"
+    },
+    {
+        "id": "q_090",
+        "query": "How did 3M perform in the Americas region in 2022?",
+        "company": "3M",
+        "evidence": [
+            {
+                "doc_id": "66740_2022-12-31",
+                "paragraph_id": 61,
+                "text": "For the full year 2022, in the Americas geographic area, U.S. total sales were flat which included increased organic sales of 1 percent. Total sales in Mexico increased 8 percent which included increased organic sales of 12 percent. In Canada, total sales increased 9 percent which included increased organic sales of 13 percent. In Brazil, total sales increased 15 percent which included increased organic sales of 12 percent. In the Asia Pacific geographic area, China total sales decreased 6 percent which included decreased organic sales of 3 percent. In Japan, total sales decreased 12 percent which included increased organic sales of 2 percent.",
+                "supports": "full"
+            }
+        ],
+        "type": "factoid"
+    },
+    {
+        "id": "q_091",
+        "query": "Did Church & Dwight acquire any new companies in 2019?",
+        "company": "Church & Dwight",
+        "evidence": [
+            {
+                "doc_id": "313927_2019-12-31",
+                "paragraph_id": 22,
+                "text": "On May 1, 2019, we closed on our previously announced Flawless Acquisition from Ideavillage. We paid $475.0 at closing and may make an additional contingent consideration payment up to a maximum of $425.0 in cash, based on a trailing twelve-month net sales target ending no later than December 31, 2021. The transaction was funded with proceeds from a three-year term loan and commercial paper borrowings. The Flawless hair removal business is managed in the Consumer Domestic and Consumer International segments and represents an addition to our specialty haircare portfolio which includes BATISTE dry shampoo, VIVISCAL hair thinning supplements, and TOPPIK hair fibers.",
+                "supports": "full"
+            },
+            {
+                "doc_id": "313927_2020-12-31",
+                "paragraph_id": 24,
+                "text": "The identification and integration of strategic acquisitions are an important component of our overall strategy and product category diversification. Acquisitions have added significantly to our sales and profits and product category diversification over the last decade. This is evidenced by our 2015 acquisition of certain assets of Varied Industries Corporation (the \"Vi-cor Acquisition\"), 2016 acquisitions of Spencer Forrest, Inc., the maker of TOPPIK (the \"Toppik Acquisition\"), and the ANUSOL and RECTINOL businesses from Johnson & Johnson (the \"Anusol Acquisition\"), 2017 acquisitions of VIVISCAL from Lifes2Good Holdings Limited (the \"Viviscal Acquisition\"), Agro BioSciences, Inc. (the \"Agro Acquisition\"), and WATERPIK from Pik Holdings, Inc. (the \"Waterpik Acquisition\"), 2018 acquisition of Passport Food Safety Solutions, Inc. (the \"Passport Acquisition\"), the 2019 acquisition of FLAWLESS; and the 2020 acquisition of ZICAM from Consumer Health Holdco LLC. However, the failure to effectively identify or integrate any acquisition or achieve expected synergies may cause us to incur material asset write-downs. We actively seek acquisitions that fit our guidelines, and our strong financial position provides us with flexibility to take advantage of acquisition opportunities. In addition, our ability to quickly integrate acquisitions and leverage existing infrastructure has enabled us to establish a strong track record in making accretive acquisitions. Since 2001, we have acquired 12 of our 13 \"power brands\".",
+                "supports": "full"
+            },
+            {
+                "doc_id": "313927_2021-12-31",
+                "paragraph_id": 24,
+                "text": "The identification and integration of strategic acquisitions are an important component of our overall strategy and product category diversification. Acquisitions have added significantly to our sales and profits and product category diversification over the last decade. This is evidenced by our 2015 acquisition of certain assets of Varied Industries Corporation (the \"Vi-cor Acquisition\"), the 2016 acquisitions of Spencer Forrest, Inc., the maker of TOPPIK (the \"Toppik Acquisition\"), and the ANUSOL and RECTINOL businesses from Johnson & Johnson (the \"Anusol Acquisition\"), the 2017 acquisitions of VIVISCAL from Lifes2Good Holdings Limited (the \"Viviscal Acquisition\"), Agro BioSciences, Inc. (the \"Agro Acquisition\"), and WATERPIK from Pik Holdings, Inc. (the \"Waterpik Acquisition\"), the 2018 acquisition of Passport Food Safety Solutions, Inc. (the \"Passport Acquisition\"), the 2019 acquisition of FLAWLESS; the 2020 acquisition of ZICAM from Consumer Health Holdco LLC and the 2021 acquisition of THERABREATH from Dr. Harold Katz, LLC and HK-IP International, Inc. The failure to effectively identify or integrate any acquisition or achieve expected synergies may cause us to incur material asset write-downs. We actively seek acquisitions that fit our guidelines, and our strong financial position provides us with flexibility to take advantage of acquisition opportunities. In addition, our ability to quickly integrate acquisitions and leverage existing infrastructure has enabled us to establish a strong track record in making accretive acquisitions. Since 2001, we have acquired 13 of our 14 \"power brands\".",
+                "supports": "full"
+            },
+            {
+                "doc_id": "313927_2022-12-31",
+                "paragraph_id": 26,
+                "text": "The identification and integration of strategic acquisitions are an important component of our overall strategy and product category diversification. Acquisitions have added significantly to our sales, profits and product category diversification over the last decade. This is evidenced by our 2015 acquisition of certain assets of Varied Industries Corporation (the \"Vi-cor Acquisition\"), the 2016 acquisitions of Spencer Forrest, Inc., the maker of TOPPIK (the \"Toppik Acquisition\"), and the ANUSOL and RECTINOL businesses from Johnson & Johnson (the \"Anusol Acquisition\"), the 2017 acquisitions of the VIVISCAL brand from Lifes2Good Holdings Limited (the \"Viviscal Acquisition\"), Agro BioSciences, Inc. (the \"Agro Acquisition\"), and the WATERPIK brand from Pik Holdings, Inc. (the \"Waterpik Acquisition\"), the 2018 acquisition of Passport Food Safety Solutions, Inc. (the \"Passport Acquisition\"), the 2019 acquisition of the FINISHING TOUCH FLAWLESS brand; the 2020 acquisition of the ZICAM brand from Consumer Health Holdco LLC, the 2021 acquisition of the THERABREATH brand from Dr. Harold Katz, LLC and HK-IP International, Inc, and the 2022 acquisition of the HERO brand which includes the MIGHTY PATCH acne treatment products. The failure to effectively identify or integrate any acquisition or achieve expected synergies may cause us to incur material asset write-downs. We actively seek acquisitions that fit our guidelines, and our strong financial position provides us with flexibility to take advantage of acquisition opportunities. In addition, our ability to quickly integrate acquisitions and leverage existing infrastructure has enabled us to establish a strong track record in making accretive acquisitions. Since 2001, we have acquired 13 of our 14 \"power brands\".",
+                "supports": "full"
+            }
+        ],
+        "type": "factoid"
+    },
+    {
+        "id": "q_092",
+        "query": "Did Church & Dwight raise dividends from 2019 to 2020?",
+        "company": "Church & Dwight",
+        "evidence": [
+            {
+                "doc_id": "313927_2019-12-31",
+                "paragraph_id": 23,
+                "text": "On January 31, 2020, the Board declared a 5.5% increase in the regular quarterly dividend from $0.2275 to $0.24 per share, equivalent to an annual dividend of $0.96 per share payable to stockholders of record as of February 14, 2020. The increase raises the annual dividend payout from $224.0 to approximately $237.0.",
+                "supports": "partial"
+            },
+            {
+                "doc_id": "313927_2019-12-31",
+                "paragraph_id": 24,
+                "text": "On February 5, 2019, the Board declared a 5% increase in the regular quarterly dividend from $0.2175 to $0.2275 per share, equivalent to an annual dividend of $0.91 per share payable to stockholders of record as of February 15, 2019. The increase raised the annual dividend payout from $213.0 to $224.0.",
+                "supports": "partial"
+            }
+        ],
+        "type": "factoid"
+    },
+    {
+        "id": "q_093",
+        "query": "Of the 13 'power brands' that Church & Dwight has, how many of them failed to meet category growth for the full year 2020?",
+        "company": "Church & Dwight",
+        "evidence": [
+            {
+                "doc_id": "313927_2020-12-31",
+                "paragraph_id": 20,
+                "text": "In the domestic business, seven out of 13 \"power brands\" met or exceeded category growth for the full year 2020. Our global product portfolio consists of both premium (58% of total worldwide consumer revenue in 2020) and value (42% of total worldwide consumer revenue in 2020) brands, which we believe enables us to succeed in a range of economic environments. We intend to continue to develop a portfolio of appealing new products to build loyalty among cost-conscious consumers.",
+                "supports": "full"
+            }
+        ],
+        "type": "reasoning"
+    },
+    {
+        "id": "q_094",
+        "query": "How much did Church & Dwight pay at closing to acquire Hero Cosmetics, and were there any additional deferred payments associated with the acquisition?",
+        "company": "Church & Dwight",
+        "evidence": [
+            {
+                "doc_id": "313927_2022-12-31",
+                "paragraph_id": 29,
+                "text": "On October 13, 2022, we acquired all of the issued and outstanding shares of capital stock of Hero Cosmetics, Inc. (\"Hero\"), the developer of the Hero\u00ae brand which includes the MIGHTY PATCH\u00ae acne treatment products (the \"Hero Acquisition\"). We paid $546.8, net of cash acquired, at closing, and deferred an additional cash payment of $8.0 for five years to satisfy certain indemnification obligations, if necessary. We also issued $61.5 of restricted stock which will be recognized as compensation expense as the vesting requirements for individuals who received the restricted stock and will continue to be employed by us are satisfied. The vesting requirements are satisfied at various dates over a three-year period from the date of the acquisition. Hero\u2019s annual net sales for the year ended December 31, 2022 were approximately $179.0. The Hero Acquisition was financed with cash on hand and commercial paper borrowings and is managed in the Consumer Domestic segment.",
+                "supports": "full"
+            }
+        ],
+        "type": "factoid"
+    },
+    {
+        "id": "q_095",
+        "query": "How was Church & Dwight's Hero Acquisition financed, and what were the vesting terms for the restricted stock issued as part of the transaction?",
+        "company": "Church & Dwight",
+        "evidence": [
+            {
+                "doc_id": "313927_2022-12-31",
+                "paragraph_id": 29,
+                "text": "On October 13, 2022, we acquired all of the issued and outstanding shares of capital stock of Hero Cosmetics, Inc. (\"Hero\"), the developer of the Hero\u00ae brand which includes the MIGHTY PATCH\u00ae acne treatment products (the \"Hero Acquisition\"). We paid $546.8, net of cash acquired, at closing, and deferred an additional cash payment of $8.0 for five years to satisfy certain indemnification obligations, if necessary. We also issued $61.5 of restricted stock which will be recognized as compensation expense as the vesting requirements for individuals who received the restricted stock and will continue to be employed by us are satisfied. The vesting requirements are satisfied at various dates over a three-year period from the date of the acquisition. Hero\u2019s annual net sales for the year ended December 31, 2022 were approximately $179.0. The Hero Acquisition was financed with cash on hand and commercial paper borrowings and is managed in the Consumer Domestic segment.",
+                "supports": "full"
+            }
+        ],
+        "type": "factoid"
+    },
+    {
+        "id": "q_096",
+        "query": "In 2022, what percentage of AT&T's total segment operating revenues was contributed by the Communications segment, and how did this compare with 2021?",
+        "company": "AT&T",
+        "evidence": [
+            {
+                "doc_id": "732717_2022-12-31",
+                "paragraph_id": 6,
+                "text": "The Communications segment accounted for approximately 97% of our 2022 total segment operating revenues compared to 98% in 2021 and accounted for all segment operating income in 2022 and 2021. This segment provides services to businesses and consumers located in the U.S. and businesses globally. Our business strategies reflect bundled product offerings that cut across product lines and utilize shared assets.",
+                "supports": "full"
+            }
+        ],
+        "type": "factoid"
+    },
+    {
+        "id": "q_097",
+        "query": "What transaction did AT&T close on April 8, 2022, and which companies were involved in the combination of WarnerMedia with Discovery?",
+        "company": "AT&T",
+        "evidence": [
+            {
+                "doc_id": "732717_2022-12-31",
+                "paragraph_id": 3,
+                "text": "On April 8, 2022, we closed our transaction to combine substantially all of our WarnerMedia segment (WarnerMedia) with a subsidiary of Discovery, Inc (Discovery). Upon the separation and distribution of WarnerMedia, the WarnerMedia business met the criteria for discontinued operations. For discontinued operations, we also evaluated transactions that were components of AT&T\u2019s single plan of a strategic shift, including dispositions that did not individually meet the criteria due to materiality, and have determined discontinued operations to be comprised of WarnerMedia, Vrio, Xandr and Playdemic. These businesses are reflected in the accompanying financial statements as discontinued operations, including for periods prior to the consummation of the WarnerMedia/Discovery transaction. (See Notes 6 and 23)",
+                "supports": "full"
+            },
+            {
+                "doc_id": "732717_2022-12-31",
+                "paragraph_id": 109,
+                "text": "WarnerMedia On April 8, 2022, we completed the separation and distribution of our WarnerMedia business, and merger of Magallanes, Inc. (Spinco), an AT&T subsidiary formed to hold the WarnerMedia business, with a subsidiary of Discovery, Inc., which was renamed Warner Bros. Discovery, Inc. (WBD). Each AT&T shareholder was entitled to receive 0.241917 shares of WBD common stock for each share of AT&T common stock held as of the record date, which represented approximately 71% of WBD. In connection with and in accordance with the terms of the Separation and Distribution Agreement (SDA), prior to the distribution and merger, AT&T received approximately $40,400, which includes $38,800 of Spinco cash and $1,600 of debt retained by WarnerMedia. During the second quarter of 2022, assets of approximately $121,100 and liabilities of $70,600 were removed from our balance sheet as well as $45,041 of retained earnings and $5,632 of additional paid-in capital associated with the transaction. Additionally, in August 2022, we and WBD finalized the post-closing adjustment, pursuant to Section 1.3 of the SDA, which resulted in a $1,200 payment to WBD in the third quarter of 2022 and was reflected in the December 31, 2022 balance sheet as an adjustment to additional paid-in capital. The payment is accounted for as cash used in financing activities in our statement of cash flows in third quarter of 2022. (See Note 6)",
+                "supports": "full"
+            }
+        ],
+        "type": "factoid"
+    },
+    {
+        "id": "q_098",
+        "query": "Did AT&T's cash provided by operating activities increase or decrease in 2022 compared to 2021?",
+        "company": "AT&T",
+        "evidence": [
+            {
+                "doc_id": "732717_2022-12-31",
+                "paragraph_id": 124,
+                "text": "During 2022, cash provided by operating activities was $35,812 compared to $37,170 in 2021, reflecting the separation of DIRECTV and working capital impacts, including higher payments for wireless devices tied to accelerated subscriber growth.",
+                "supports": "full"
+            }
+        ],
+        "type": "reasoning"
+    },
+    {
+        "id": "q_099",
+        "query": "How did Ralph Lauren's net revenues and net income change from Fiscal 2022 to Fiscal 2023?",
+        "company": "Ralph Lauren Corporation",
+        "evidence": [
+            {
+                "doc_id": "1037038_2023-04-01",
+                "paragraph_id": 35,
+                "text": "In Fiscal 2023, we reported net revenues of $6.444 billion, net income of $522.7 million, and net income per diluted share of $7.58, as compared to net revenues of $6.219 billion, net income of $600.1 million, and net income per diluted share of $8.07 in Fiscal 2022. The comparability of our operating results has been affected by net restructuring-related charges, impairment of assets, and certain other benefits (charges), as well as the impacts of the 53rd week in Fiscal 2022, the disposition of our former Club Monaco business at the end of the first quarter of Fiscal 2022, and the transition of our Chaps business to a fully licensed business model during the second quarter of Fiscal 2022, as discussed further below. We also continue to experience varying degrees of business disruptions resulting from the current macroeconomic environment, including ongoing inflationary pressures, foreign currency volatility, the war in Ukraine, and COVID-19-related disruptions.",
+                "supports": "full"
+            },
+            {
+                "doc_id": "1037038_2023-04-01",
+                "paragraph_id": 39,
+                "text": "Net income decreased by $77.4 million to $522.7 million in Fiscal 2023 as compared to Fiscal 2022, primarily due to a $94.2 million decline in our operating income, partially offset by a $31.5 million decline in non-operating expense, net.",
+                "supports": "partial"
+            },
+            {
+                "doc_id": "1037038_2023-04-01",
+                "paragraph_id": 49,
+                "text": "Net revenues increased by $225.1 million, or 3.6%, to $6.444 billion in Fiscal 2023 as compared to Fiscal 2022, including unfavorable foreign currency effects of $360.0 million.",
+                "supports": "partial"
+            }
+        ],
+        "type": "reasoning"
+    },
+    {
+        "id": "q_100",
+        "query": "In 2022, why did UPS present non-GAAP measures that exclude the MD-11 residual value adjustment, and what insight did management believe this provides to investors?",
+        "company": "United Parcel Service",
+        "evidence": [
+            {
+                "doc_id": "1090727_2022-12-31",
+                "paragraph_id": 20,
+                "text": "During the fourth quarter of 2022, we determined to retire six of our existing MD-11 aircraft from operational use in 2023. In connection therewith, we reduced the estimated residual value of our MD-11 fleet, incurring a one-time, non-cash charge on our fully-depreciated aircraft. This charge was allocated between our domestic package and international package segments. We supplement the presentation of our operating profit, operating margin, income before income taxes, net income and earnings per share with non-GAAP measures that exclude the impact of this charge. We believe excluding the impact of this charge better enables users of our financial statements to understand the ongoing cost associated with our long-lived assets. For information regarding residual values, see note 4 to the audited, consolidated financial statements.",
+                "supports": "full"
+            }
+        ],
+        "type": "factoid"
+    }
+]
