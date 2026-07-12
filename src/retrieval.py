@@ -1,7 +1,8 @@
 import faiss
 import numpy as np
 from rank_bm25 import BM25Okapi
-from typing import Tuple
+from .utils import tokenize
+from .chunk_filter import get_company_candidate_indices
 
 # ---------------------------
 # Dense Retrieval
@@ -13,29 +14,101 @@ def dense_retrieval(
     index: faiss.Index,
     *,
     top_k: int = 10,
-    nprobe: int | None = None,
-) -> Tuple[np.ndarray, np.ndarray]:
+    filter_chunks: bool = True,
+    candidate_indices: np.ndarray | None = None,
+) -> tuple[np.ndarray, np.ndarray]:
     """
-    Dense retrieval using FAISS.
+    Retrieve chunks using a FAISS inner-product index.
+
+    The FAISS index is built over the full corpus. When filtering is enabled
+    and candidate indices are provided, the full index is searched before
+    retaining only eligible candidates. This guarantees that candidates are
+    not missed because of a retrieval cutoff.
+
+    Results are returned in descending inner-product score order.
 
     Args:
-        query_emb (np.ndarray): The embedded query.
-        index (faiss.Index): Faiss index object.
-        top_k (int): The number of retrieved docs.
-        nprobe (int | None): Number of cells visited to perform a search.
+        query_emb (np.ndarray): Query embedding with shape ``(dimension,)`` or ``(1, dimension)``.
+        index (faiss.Index): FAISS index using ``faiss.IndexFlatIP``.
+        top_k (int): Maximum number of results to return.
+        filter_chunks (bool): Whether to restrict retrieval using ``candidate_indices``.
+        candidate_indices (np.ndarray | None): Global corpus indices eligible for retrieval.
+            - ``None`` means filtering is unavailable, so retrieval falls back
+              to the full corpus.
+            - An empty array means filtering succeeded but no chunks matched.
+            - A non-empty array restricts retrieval to those corpus indices.
 
     Returns:
-        indices (top_k,)
-        scores  (top_k,)
+        tuple[np.ndarray, np.ndarray]:
+            Retrieved corpus indices and corresponding inner-product scores,
+            ordered by score in descending order.
     """
+    if top_k <= 0:
+        raise ValueError("top_k must be greater than 0.")
+
+    if index.metric_type != faiss.METRIC_INNER_PRODUCT:
+        raise ValueError("index must use inner-product similarity.")
+
     if query_emb.ndim == 1:
         query_emb = query_emb.reshape(1, -1)
+    elif query_emb.ndim != 2 or query_emb.shape[0] != 1:
+        raise ValueError("query_emb must have shape (dimension,) or (1, dimension).")
 
-    if nprobe is not None and hasattr(index, "nprobe"):
-        index.nprobe = nprobe
+    if query_emb.shape[1] != index.d:
+        raise ValueError(
+            f"Query dimension {query_emb.shape[1]} does not match "
+            f"index dimension {index.d}."
+        )
 
-    scores, indices = index.search(query_emb, top_k)
-    return indices[0], scores[0]
+    # FAISS expects contiguous float32 input.
+    query_emb = np.ascontiguousarray(query_emb, dtype=np.float32)
+
+    if candidate_indices is not None:
+        candidate_indices = np.asarray(candidate_indices, dtype=np.int64)
+
+        if candidate_indices.ndim != 1:
+            raise ValueError("candidate_indices must be a one-dimensional array.")
+
+        if np.any(candidate_indices < 0) or np.any(candidate_indices >= index.ntotal):
+            raise ValueError(
+                "candidate_indices must contain valid indices into the FAISS index."
+            )
+
+    # Filtering succeeded, but no chunks matched.
+    if filter_chunks and candidate_indices is not None and candidate_indices.size == 0:
+        return (
+            np.empty(0, dtype=np.int64),
+            np.empty(0, dtype=np.float32),
+        )
+
+    if index.ntotal == 0:
+        return (
+            np.empty(0, dtype=np.int64),
+            np.empty(0, dtype=np.float32),
+        )
+
+    apply_filter = filter_chunks and candidate_indices is not None
+
+    # Searching the full index ensures that no eligible candidate is excluded
+    # by an arbitrary pre-filter retrieval cutoff.
+    search_k = index.ntotal if apply_filter else min(top_k, index.ntotal)
+
+    scores, indices = index.search(query_emb, search_k)
+
+    indices = indices[0]
+    scores = scores[0]
+
+    # FAISS can return -1 for missing neighbors in some index configurations.
+    valid_mask = indices != -1
+    indices = indices[valid_mask]
+    scores = scores[valid_mask]
+
+    if apply_filter:
+        candidate_mask = np.isin(indices, candidate_indices)
+        indices = indices[candidate_mask]
+        scores = scores[candidate_mask]
+
+    return indices[:top_k], scores[:top_k]
 
 
 # ---------------------------
@@ -48,23 +121,44 @@ def sparse_retrieval(
     bm25: BM25Okapi,
     *,
     top_k: int = 10,
-) -> Tuple[np.ndarray, np.ndarray]:
+    filter_chunks: bool = True,
+    candidate_indices: np.ndarray | None = None,
+) -> tuple[np.ndarray, np.ndarray]:
     """
-    Sparse retrieval using BM25.
+    Retrieve chunks using BM25.
 
     Args:
-        query (str): The input query.
-        bm25 (BM25Okapi): BM25 boject.
-        top_k (int): The number of retrieved docs.
+        query (str): Input query.
+        bm25 (BM25Okapi): BM25 index built over the full corpus.
+        top_k (int): Maximum number of results to return.
+        filter_chunks (bool): Whether to restrict retrieval to ``candidate_indices``.
+        candidate_indices (np.ndarray | None): Global corpus indices eligible for retrieval.
 
     Returns:
-        tuple[np.ndarray, np.ndarray]:
-            - indices: The indices of retrieved docs
-            - scores[indices]: Th
+        tuple[np.ndarray, np.ndarray]: Ranked corpus indices and their BM25 scores.
     """
-    scores = bm25.get_scores(query.split())
-    indices = np.argsort(scores)[::-1][:top_k]
-    return indices, scores[indices]
+    if top_k <= 0:
+        raise ValueError("top_k must be greater than 0.")
+
+    scores = bm25.get_scores(tokenize(query))
+    sorted_indices = np.argsort(scores)[::-1]
+
+    # Fallback to normal BM25 if no filter enabled or candidate matching failed
+    if not filter_chunks or candidate_indices is None:
+        top_indices = sorted_indices[:top_k]
+        return top_indices, scores[top_indices]
+
+    # Return an empty array when no chunks are matched
+    if len(candidate_indices) == 0:
+        return (
+            np.array([], dtype=np.int64),
+            np.array([], dtype=scores.dtype),
+        )
+
+    filtered_sorted_indices = sorted_indices[np.isin(sorted_indices, candidate_indices)]
+    top_indices = filtered_sorted_indices[:top_k]
+
+    return top_indices, scores[top_indices]
 
 
 # ---------------------------
@@ -89,6 +183,9 @@ def reciprocal_rank_fusion(
     Returns:
         A mapping from document index to fused RRF score.
     """
+    if rrf_k < 0:
+        raise ValueError("rrf_k must be non-negative.")
+
     fused_scores: dict[int, float] = {}
 
     # Dense contribution
@@ -116,56 +213,81 @@ def hybrid_retrieval(
     top_k: int = 10,
     dense_k: int = 50,
     sparse_k: int = 50,
-    nprobe: int | None = None,
     rrf_k: int = 60,
-) -> Tuple[np.ndarray, np.ndarray]:
+    filter_chunks: bool = True,
+    candidate_indices: np.ndarray | None = None,
+) -> tuple[np.ndarray, np.ndarray]:
     """
     Perform hybrid retrieval by fusing dense and sparse rankings.
 
     Args:
-        query (str): The user query string.
-        query_emb (np.ndarray): The dense embedding vector for the query.
-        faiss_index (faiss.Index): FAISS index for dense retrieval.
-        bm25 (BM25Okapi): BM25Okapi index for sparse retrieval.
+        query (str): User query string.
+        query_emb (np.ndarray): Dense query embedding.
+        faiss_index (faiss.Index): FAISS index using ``faiss.IndexFlatIP``.
+        bm25 (BM25Okapi): BM25 index for sparse retrieval.
         top_k (int): Number of final documents to return.
-        dense_k (int): Number of dense candidates to retrieve before fusion.
-        sparse_k (int): Number of sparse candidates to retrieve before fusion.
-        nprobe (int | None): Optional number of FAISS partitions to search.
-        rrf_k (int): Reciprocal Rank Fusion constant.
+        dense_k (int): Number of dense results to include before fusion.
+        sparse_k (int): Number of sparse results to include before fusion.
+        rrf_k (int): Non-negative Reciprocal Rank Fusion constant.
+        filter_chunks (bool): Whether to restrict retrieval using ``candidate_indices``.
+        candidate_indices (np.ndarray | None): Global corpus indices eligible for retrieval.
+            - ``None`` means filtering is unavailable, so retrieval falls back
+              to the full corpus.
+            - An empty array means filtering succeeded but no chunks matched.
+            - A non-empty array restricts retrieval to those corpus indices.
 
     Returns:
-        A tuple of (final_idx, final_scores) for the fused top-k results.
+        tuple[np.ndarray, np.ndarray]:
+            Final corpus indices and corresponding RRF scores, ordered by
+            descending RRF score.
     """
+    if top_k <= 0:
+        raise ValueError("top_k must be greater than 0.")
 
-    # Retrieve candidates from both retrieval methods
+    if dense_k <= 0:
+        raise ValueError("dense_k must be greater than 0.")
+
+    if sparse_k <= 0:
+        raise ValueError("sparse_k must be greater than 0.")
+
+    if rrf_k < 0:
+        raise ValueError("rrf_k must be non-negative.")
+
     dense_idx, _ = dense_retrieval(
         query_emb,
         faiss_index,
         top_k=dense_k,
-        nprobe=nprobe,
+        filter_chunks=filter_chunks,
+        candidate_indices=candidate_indices,
     )
 
     sparse_idx, _ = sparse_retrieval(
         query,
         bm25,
         top_k=sparse_k,
+        filter_chunks=filter_chunks,
+        candidate_indices=candidate_indices,
     )
 
-    # Use RRF for ranking
-    fused_dict = reciprocal_rank_fusion(
+    fused_scores = reciprocal_rank_fusion(
         dense_idx,
         sparse_idx,
         rrf_k=rrf_k,
     )
 
-    # Select final top_k
     sorted_items = sorted(
-        fused_dict.items(),
-        key=lambda x: x[1],
+        fused_scores.items(),
+        key=lambda item: item[1],
         reverse=True,
     )[:top_k]
 
-    final_idx = np.array([doc_id for doc_id, _ in sorted_items])
-    final_scores = np.array([score for _, score in sorted_items])
+    final_idx = np.asarray(
+        [doc_id for doc_id, _ in sorted_items],
+        dtype=np.int64,
+    )
+    final_scores = np.asarray(
+        [score for _, score in sorted_items],
+        dtype=np.float32,
+    )
 
     return final_idx, final_scores

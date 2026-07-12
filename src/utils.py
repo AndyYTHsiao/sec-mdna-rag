@@ -1,7 +1,39 @@
+import re
 import json
 import hashlib
 from pathlib import Path
 from typing import Any
+
+
+TOKEN_PATTERN = re.compile(
+    r"""
+    [a-zA-Z]+(?:[-'][a-zA-Z]+)*
+    |
+    \d+(?:\.\d+)?%?
+    """,
+    re.VERBOSE,
+)
+
+NORMALIZATION_MAP = {
+    "revenues": "revenue",
+    "expenses": "expense",
+    "costs": "cost",
+    "sales": "sale",
+    "operations": "operation",
+    "products": "product",
+    "services": "service",
+    "customers": "customer",
+    "segments": "segment",
+    "markets": "market",
+    "assets": "asset",
+    "liabilities": "liability",
+}
+
+
+def tokenize(text: str) -> list[str]:
+    tokens = TOKEN_PATTERN.findall(text.lower())
+
+    return [NORMALIZATION_MAP.get(token, token) for token in tokens]
 
 
 def load_corpus(file_path: Path) -> tuple[list[str], list[list[str]]]:
