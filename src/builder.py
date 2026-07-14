@@ -5,14 +5,14 @@ from dataclasses import asdict
 from typing import Callable
 from pathlib import Path
 from openai import OpenAI
-from corpus import document_chunking_stream
-from llm import compute_embeddings
-from indexing import (
+from .corpus import document_chunking_stream
+from .llm import compute_embeddings
+from .indexing import (
     build_faiss_index,
     build_bm25,
 )
-from config import PipelineConfig
-from utils import load_corpus
+from .config import PipelineConfig
+from .utils import load_corpus
 
 
 class Builder:
@@ -55,7 +55,7 @@ class Builder:
             suffix (str): The file extension for the artifact.
 
         Returns:
-            The full Path to the artifact file, incorporating the config hash.
+            Path: The full Path to the artifact file, incorporating the config hash.
         """
         return Path(base_path) / f"{prefix}_{self.hashes[key]}{suffix}"
 
@@ -70,7 +70,7 @@ class Builder:
             **kwargs: Additional keyword arguments for the function to build the artifact.
 
         Returns:
-            The artifact path.
+            Path: The artifact path.
         """
         if path.exists() and path.stat().st_size > 0:
             return path
@@ -98,7 +98,7 @@ class Builder:
         Prepare the corpus file path and build corpus if it does not exist.
 
         Returns:
-            The corpus path.
+            Path: The corpus path.
         """
         path = self._artifact_path("corpus", self.paths.corpus_path, "corpus", ".jsonl")
         return self._get_or_build(path, self._build_corpus, path)
@@ -117,6 +117,7 @@ class Builder:
             texts,
             output_path,
             save_emb=True,
+            batch_size=self.cfg.embedding.batch_size,
         )
 
     def _prepare_embeddings(self, corpus_path: Path) -> tuple[Path, list[str]]:
@@ -127,7 +128,7 @@ class Builder:
             corpus (Path): The path where the corpus is saved.
 
         Returns:
-            A tuple containing the path of embeddings and a list of corpus texts.
+            tuple[Path, list[str]]: The path of embeddings and a list of corpus texts.
         """
         path = self._artifact_path(
             "embedding", self.paths.embeddings_path, "embedding", ".npy"
@@ -149,15 +150,20 @@ class Builder:
         embeddings = np.load(emb_path)
         build_faiss_index(
             embeddings,
-            index_type=self.cfg.faiss.index_type,
-            metric=self.cfg.faiss.metric,
-            nlist=self.cfg.faiss.nlist,
             output_path=output_path,
             save_index=True,
         )
 
     def _prepare_faiss(self, emb_path: Path) -> Path:
-        """Prepare the FAISS index artifact and build it if missing."""
+        """
+        Prepare the FAISS index artifact and build it if missing.
+
+        Args:
+            emb_path (Path): The path to the embedding.
+
+        Returns:
+            Path: The path to the FAISS index.
+        """
         path = self._artifact_path("faiss", self.paths.indexes_path, "faiss", ".index")
 
         return self._get_or_build(path, self._build_faiss, path, emb_path)
@@ -186,7 +192,7 @@ class Builder:
             texts (list[str]): The list of text chunks corresponding to chunk_ids.
 
         Returns:
-            The path to BM25 artifact.
+            Path: The path to BM25 artifact.
         """
         path = self._artifact_path("bm25", self.paths.indexes_path, "bm25", ".pkl")
 
@@ -209,9 +215,9 @@ class Builder:
 
         self._save_registry(db_name, Path(registry_dir))
 
-        questionary.print(f"\n[✓] Database '{db_name}' ready.", style="bold fg:green")
+        questionary.print(f"\n[✓] Database '{db_name}' ready.\n", style="bold fg:green")
 
-    def _save_registry(self, db_name: str, registry_dir: Path):
+    def _save_registry(self, db_name: str, registry_dir: Path) -> None:
         """
         Save the database registry file containing config and artifact hashes.
 

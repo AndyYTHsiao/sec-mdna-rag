@@ -5,8 +5,8 @@ from dataclasses import (
     MISSING,
     is_dataclass,
 )
-from typing import Literal, Any, Type, TypeVar
-from utils import hash_config
+from typing import Any, Type, TypeVar
+from .utils import hash_config
 
 T = TypeVar("T")
 
@@ -90,13 +90,7 @@ class CorpusConfig:
 @dataclass(frozen=True)
 class EmbeddingConfig:
     model: str = "text-embedding-3-small"
-
-
-@dataclass(frozen=True)
-class FaissConfig:
-    index_type: Literal["flat", "ivf"] = "flat"
-    metric: Literal["ip", "l2"] = "ip"
-    nlist: int = 1024
+    batch_size: int = 256
 
 
 @dataclass(frozen=True)
@@ -107,17 +101,21 @@ class BM25Config:
 
 @dataclass
 class QueryConfig:
-    model: str = "gpt-5-nano"
+    registry_dir: str = "./artifacts/registry"
+    company_info_path: str = "./data/company_metadata.json"
+    model: str = "gpt-5.6-luna"
     top_k: int = 5
     dense_k: int = 5
     sparse_k: int = 5
     rrf_k: int = 60
+    filter_chunks: bool = True
+    fuzzy_threshold: float = 0.9
 
 
 @dataclass(frozen=True)
 class Artifact:
     name: str
-    config: Any
+    config: Any = None
     dependencies: tuple["Artifact", ...] = ()
 
     def compute_hash(self) -> str:
@@ -145,7 +143,6 @@ class PipelineConfig:
     paths: PathsConfig
     corpus: CorpusConfig
     embedding: EmbeddingConfig
-    faiss: FaissConfig
     bm25: BM25Config
 
     def build_artifacts(self) -> dict[str, Artifact]:
@@ -162,7 +159,7 @@ class PipelineConfig:
 
         faiss_artifact = Artifact(
             name="faiss",
-            config=self.faiss,
+            config=None,
             dependencies=(embedding_artifact, corpus_artifact),
         )
 

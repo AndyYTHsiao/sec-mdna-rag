@@ -2,7 +2,6 @@ import faiss
 import numpy as np
 from rank_bm25 import BM25Okapi
 from .utils import tokenize
-from .chunk_filter import get_company_candidate_indices
 
 # ---------------------------
 # Dense Retrieval

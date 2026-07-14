@@ -201,7 +201,7 @@ def get_company_candidate_indices(
     start_year: str | None,
     end_year: str | None,
     company_info: dict[str, dict[str, str]],
-    chunks: list[dict[str, str]],
+    chunk_ids: list[str],
     *,
     fuzzy_threshold: float = 0.9,
 ) -> np.ndarray | None:
@@ -214,7 +214,7 @@ def get_company_candidate_indices(
         start_year (str | None): The start year of the date specified in the query.
         end_year (str | None): The end year of the date specified in the query.
         company_info (dict[str, dict[str, str]] | None): Company metadata.
-        chunks (list[dict[str, str]] | None): Corpus chunks with metadata.
+        chunk_ids (list[str]): A list of chunk IDs.
         fuzzy_threshold (float): Minimum similarity threshold for fuzzy company name matching.
 
     Returns:
@@ -240,7 +240,7 @@ def get_company_candidate_indices(
             return None
 
     candidate_indices = _filter_indices(
-        chunk_ids=[item["chunk_id"] for item in chunks],
+        chunk_ids=chunk_ids,
         inferred_cik=matched_ciks,
         start_year=start_year,
         end_year=end_year,

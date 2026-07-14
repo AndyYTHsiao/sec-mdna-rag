@@ -31,6 +31,15 @@ NORMALIZATION_MAP = {
 
 
 def tokenize(text: str) -> list[str]:
+    """
+    Tokenize text based on predefined pattern.
+
+    Args:
+        text (str): The input text.
+
+    Returns:
+        list[str]: A list of tokens.
+    """
     tokens = TOKEN_PATTERN.findall(text.lower())
 
     return [NORMALIZATION_MAP.get(token, token) for token in tokens]

@@ -1,14 +1,15 @@
 import json
 import pickle
+import numpy as np
 from openai import OpenAI
 from pathlib import Path
 from typing import Any
 from faiss import read_index, Index
 from rank_bm25 import BM25Okapi
-from llm import compute_embeddings
-from retrieval import hybrid_retrieval
-from utils import load_corpus
-from config import QueryConfig
+from .llm import compute_embeddings
+from .retrieval import hybrid_retrieval
+from .utils import load_corpus
+from .config import QueryConfig
 
 
 class RAGDatabase:
@@ -31,12 +32,32 @@ class RAGDatabase:
 
         Args:
             name (str): The database name.
-            embedding_model(str): The embedding model used for queries.
-            chunk_ids (list[str]):: The list of chunk identifiers for the corpus.
+            embedding_model (str): The embedding model used for queries.
+            chunk_ids (list[str]): The list of chunk identifiers for the corpus.
             texts (list[str]): The list of text chunks corresponding to chunk_ids.
-            faiss_inde (Index): The dense FAISS index used for semantic retrieval.
+            faiss_index (Index): The dense FAISS index used for semantic retrieval.
             bm25_index (BM25Okapi): The sparse BM25 index used for lexical retrieval.
         """
+        corpus_size = len(chunk_ids)
+
+        if len(texts) != corpus_size:
+            raise ValueError(
+                "chunk_ids and texts must have the same length: "
+                f"{corpus_size} != {len(texts)}."
+            )
+
+        if faiss_index.ntotal != corpus_size:
+            raise ValueError(
+                "FAISS index size must match the corpus size: "
+                f"{faiss_index.ntotal} != {corpus_size}."
+            )
+
+        if len(bm25_index.doc_len) != corpus_size:
+            raise ValueError(
+                "BM25 index size must match the corpus size: "
+                f"{len(bm25_index.doc_len)} != {corpus_size}."
+            )
+
         self.name = name
         self.embedding_model = embedding_model
         self.chunk_ids = chunk_ids
@@ -45,7 +66,9 @@ class RAGDatabase:
         self.bm25_index = bm25_index
 
     @classmethod
-    def load(cls, db_name: str, registry_dir: str = "./artifacts/registry"):
+    def load(
+        cls, db_name: str, registry_dir: str = "./artifacts/registry"
+    ) -> "RAGDatabase":
         """
         Load a database from its registry entry and return a RAGDatabase.
 
@@ -94,7 +117,12 @@ class RAGDatabase:
         )
 
     def retrieve(
-        self, query: str, client: OpenAI, query_cfg: QueryConfig
+        self,
+        query: str,
+        client: OpenAI,
+        query_cfg: QueryConfig,
+        batch_size: int = 256,
+        candidate_indices: np.ndarray | None = None,
     ) -> list[dict[str, Any]]:
         """
         Retrieve ranked document chunks for a query using hybrid search.
@@ -103,18 +131,21 @@ class RAGDatabase:
             query (str): The user query string.
             client (OpenAI): OpenAI client used to compute dense embeddings.
             query_cfg (QueryConfig): Query configuration controlling retrieval behavior.
-
+            batch_size (int): The number of chunks sent in one API request.
+            candidate_indices (np.ndarray | None): Global corpus indices eligible for retrieval.
+                - ``None`` means filtering is unavailable, so retrieval falls back
+                to the full corpus.
+                - An empty array means filtering succeeded but no chunks matched.
+                - A non-empty array restricts retrieval to those corpus indices.
         Returns:
             A list of dictionaries containing chunk_id, text, and score
             for each retrieved result.
         """
         query_emb = compute_embeddings(
-            client,
-            self.embedding_model,
-            [query],
+            client, self.embedding_model, [query], batch_size=batch_size
         )[0]
 
-        idx, scores = hybrid_retrieval(
+        indices, scores = hybrid_retrieval(
             query,
             query_emb,
             self.faiss_index,
@@ -123,13 +154,15 @@ class RAGDatabase:
             dense_k=query_cfg.dense_k,
             sparse_k=query_cfg.sparse_k,
             rrf_k=query_cfg.rrf_k,
+            filter_chunks=query_cfg.filter_chunks,
+            candidate_indices=candidate_indices,
         )
 
         return [
             {
                 "chunk_id": self.chunk_ids[i],
                 "text": self.texts[i],
-                "score": float(scores[k]),
+                "score": float(score),
             }
-            for k, i in enumerate(idx)
+            for i, score in zip(indices, scores, strict=True)
         ]

@@ -1,8 +1,11 @@
+import json
 from openai import OpenAI
 from typing import Any
-from llm import generate_response
-from config import QueryConfig
-from rag_db import RAGDatabase
+from .llm import generate_response
+from .prompts import PROMPT_HELPER
+from .config import QueryConfig
+from .rag_db import RAGDatabase
+from .chunk_filter import get_company_candidate_indices
 
 
 def run_query(
@@ -12,6 +15,8 @@ def run_query(
     db_name: str,
     *,
     registry_dir: str = "./artifacts/registry",
+    company_info: dict[str, dict[str, str]] | None = None,
+    fuzzy_threshold: float = 0.9,
 ) -> dict[str, Any]:
     """
     Run a retrieval-augmented generation query against a named database.
@@ -22,6 +27,8 @@ def run_query(
         query (str): The user question to answer.
         db_name (str): Name of the database to load from the registry.
         registry_dir (str): Optional path to the database registry directory.
+        company_info (dict[str, dict[str, str]] | None): Company metadata.
+        fuzzy_threshold (float): Minimum similarity threshold for fuzzy company name matching.
 
     Returns:
         A dictionary containing:
@@ -31,14 +38,67 @@ def run_query(
     # Load DB
     db = RAGDatabase.load(db_name, registry_dir)
 
+    # Find candidate indices based on identified criteria
+    candidate_indices = None
+    if query_cfg.filter_chunks:
+        if company_info is None:
+            raise ValueError(
+                "company_info is required when query_cfg.filter_chunks is enabled."
+            )
+
+        if db.texts is None:
+            raise ValueError(
+                "chunks is required when query_cfg.filter_chunks is enabled."
+            )
+
+        filter_prompts = PROMPT_HELPER["filter_chunk"]
+        filter_messages = _build_messages(
+            filter_prompts["system"],
+            filter_prompts["user"],
+            query=query,
+        )
+        raw_filter_response = generate_response(
+            client,
+            filter_messages,
+            query_cfg.model,
+        )
+        try:
+            extracted_info = json.loads(raw_filter_response)
+        except json.JSONDecodeError as exc:
+            raise ValueError(
+                "The filter extraction response was not valid JSON. "
+                f"Response: {raw_filter_response!r}"
+            ) from exc
+
+        required_fields = {"companies", "start_year", "end_year"}
+        missing_fields = required_fields - extracted_info.keys()
+
+        if missing_fields:
+            raise ValueError(
+                "The filter extraction response is missing required fields: "
+                f"{sorted(missing_fields)}"
+            )
+
+        candidate_indices = get_company_candidate_indices(
+            extracted_info["companies"],
+            extracted_info["start_year"],
+            extracted_info["end_year"],
+            company_info,
+            chunk_ids=db.chunk_ids,
+            fuzzy_threshold=fuzzy_threshold,
+        )
+
     # Retrieve
-    results = db.retrieve(query, client, query_cfg)
+    results = db.retrieve(query, client, query_cfg, candidate_indices=candidate_indices)
 
     # Build context
-    context = build_context(results) if results else "No relevant documents retrieved."
+    context = _build_context(results) if results else "No relevant documents retrieved."
 
     # Build prompt
-    messages = build_messages(query, context)
+    query_prompts = PROMPT_HELPER["query_db"]
+    messages = _build_messages(
+        query_prompts["system"], query_prompts["user"], context=context, query=query
+    )
 
     # Generate answer
     answer = generate_response(client, messages, query_cfg.model)
@@ -49,7 +109,7 @@ def run_query(
     }
 
 
-def build_context(results: list[dict], max_chars: int = 6000) -> str:
+def _build_context(results: list[dict], max_chars: int = 6000) -> str:
     """
     Build a prompt context string from retrieved document chunks.
 
@@ -82,43 +142,27 @@ def build_context(results: list[dict], max_chars: int = 6000) -> str:
     return "\n---\n".join(context_blocks)
 
 
-def build_messages(query: str, context: str) -> list[dict[str, str]]:
+def _build_messages(
+    system_prompt: str, user_prompt: str, **kwargs
+) -> list[dict[str, str]]:
     """
     Create chat messages for the LLM prompt from a query and context.
 
     Args:
-        query: The user's question.
-        context: The retrieval context to provide to the model.
+        system_prompt (str): The system prompt.
+        user_prompt (str): The user prompt.
+        **kwargs: Additional arguments for prompts.
 
     Returns:
-        A list of OpenAI chat message dictionaries with a system prompt
-        and a user prompt containing the context and query.
+        Chat message (list[dict[str, str]]): A list of OpenAI chat message dictionaries with
+        a system prompt and a user prompt.
     """
+    try:
+        user_content = user_prompt.format(**kwargs)
+    except KeyError as e:
+        raise ValueError(f"Missing prompt argument: {e.args[0]}") from e
+
     return [
-        {
-            "role": "system",
-            "content": (
-                "You are a helpful assistant that answers questions "
-                "using the provided context.\n\n"
-                "Follow these rules strictly:\n"
-                "1. Carefully read the context before answering.\n"
-                "2. If the answer exists in the context:\n"
-                "   - Use the information from the context.\n"
-                "   - Cite the document number.\n"
-                "3. If the answer does NOT exist in the context:\n"
-                "   - Answer from general knowledge.\n"
-                "   - Start your answer with:\n"
-                "     'This answer is based on my general knowledge.'\n"
-                "4. Never fabricate citations.\n"
-                "5. Prefer using context whenever possible.\n"
-            ),
-        },
-        {
-            "role": "user",
-            "content": (
-                f"Use the following context to answer the question.\n\n"
-                f"Context:\n{context}\n\n"
-                f"Question:\n{query}"
-            ),
-        },
+        {"role": "system", "content": system_prompt.strip()},
+        {"role": "user", "content": user_content.strip()},
     ]

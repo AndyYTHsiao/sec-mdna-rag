@@ -1,9 +1,7 @@
-import argparse
 import json
 from pathlib import Path
 from tqdm import tqdm
 from typing import Iterable, TextIO
-from utils import hash_config
 
 
 def _count_tokens(text: str) -> int:
@@ -245,42 +243,3 @@ def document_chunking_stream(
         if current_chunk:
             chunk_index += 1
             _write_chunk(current_chunk, chunk_index, fout, first_write)
-
-
-if __name__ == "__main__":
-    data_dir = Path("./data")
-    parser = argparse.ArgumentParser(description="Chunk MD&A sections from filings")
-    parser.add_argument(
-        "--filings-dir",
-        type=Path,
-        default=data_dir / Path("filings"),
-        help="Directory of raw filings",
-    )
-    parser.add_argument(
-        "--max-tokens", type=int, default=700, help="Maximum tokens per chunk"
-    )
-    parser.add_argument(
-        "--max-paragraphs", type=int, default=1, help="Maximum paragraphs per chunk"
-    )
-    args = parser.parse_args()
-
-    filings_dir = args.filings_dir
-    max_tokens = args.max_tokens
-    max_paragraphs = args.max_paragraphs
-
-    corpus_cfg = {
-        "filings_dir": str(filings_dir),
-        "max_tokens": max_tokens,
-        "max_paragraphs": max_paragraphs,
-    }
-    corpus_hash = hash_config(corpus_cfg)
-    output_path = data_dir / Path(
-        f"corpus_t{max_tokens}_p{max_paragraphs}_{corpus_hash}.jsonl"
-    )
-
-    document_chunking_stream(
-        filings_dir=filings_dir,
-        output_path=output_path,
-        max_tokens=max_tokens,
-        max_paragraphs=max_paragraphs,
-    )

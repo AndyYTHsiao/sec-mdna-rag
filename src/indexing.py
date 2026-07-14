@@ -39,8 +39,8 @@ def build_bm25(
     if not corpus:
         raise ValueError("`corpus` must contain at least one document")
 
-    tokenized = tokenize(corpus)
-    bm25 = BM25Okapi(tokenized, k1=k1, b=b)
+    tokenized_corpus = [tokenize(text) for text in corpus]
+    bm25 = BM25Okapi(tokenized_corpus, k1=k1, b=b)
 
     if save_bm25:
         if output_path is None:
