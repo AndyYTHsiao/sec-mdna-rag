@@ -1,7 +1,7 @@
 [
     {
         "id": "q_001",
-        "query": "Did Apple spend more on share repurchases or dividends in 2020",
+        "query": "Did Apple spend more on share repurchases or dividends in 2020?",
         "company": "Apple",
         "evidence": [
             {
@@ -12,7 +12,7 @@
             },
             {
                 "doc_id": "320193_2020-09-26",
-                "paragraph_id": 7,
+                "paragraph_id": 46,
                 "text": "During 2020, the Company repurchased 917 million shares of its common stock for $72.5 billion",
                 "supports": "partial"
             }
@@ -61,7 +61,7 @@
             {
                 "doc_id": "320193_2020-09-26",
                 "paragraph_id": 8,
-                "text": "On August 28, 2020, the Company effected a four-for-one stock split.",
+                "text": "On August 28, 2020, the Company effected a four-for-one stock split to shareholders of record as of August 24, 2020.",
                 "supports": "partial"
             }
         ],
@@ -234,9 +234,21 @@
         "evidence": [
             {
                 "doc_id": "320193_2021-09-25",
+                "paragraph_id": 2,
+                "text": "The COVID-19 pandemic has had, and continues to have, a significant impact around the world, prompting governments and businesses to take unprecedented measures, such as restrictions on travel and business operations, temporary closures of businesses, and quarantine and shelter-in-place orders. The COVID-19 pandemic has at times significantly curtailed global economic activity and caused significant volatility and disruption in global financial markets. The COVID-19 pandemic and the measures taken by many countries in response have affected and could in the future materially impact the Company\u2019s business, results of operations and financial condition, as well as the price of the Company\u2019s stock.",
+                "supports": "partial"
+            },
+            {
+                "doc_id": "320193_2021-09-25",
                 "paragraph_id": 3,
                 "text": "During 2021, aspects of the Company\u2019s business continued to be affected by the COVID-19 pandemic, with many of the Company\u2019s retail stores, as well as channel partner points of sale, temporarily closed at various times, and a significant number of the Company\u2019s employees working remotely.",
-                "supports": "full"
+                "supports": "partial"
+            },
+            {
+                "doc_id": "320193_2021-09-25",
+                "paragraph_id": 4,
+                "text": "The extent of the continuing impact of the COVID-19 pandemic on the Company\u2019s operational and financial performance is uncertain and will depend on many factors outside the Company\u2019s control, including the timing, extent, trajectory and duration of the pandemic, the emergence of new variants, the development, availability, distribution and effectiveness of vaccines and treatments, the imposition of protective public safety measures, and the impact of the pandemic on the global economy and demand for consumer products.",
+                "supports": "partial"
             }
         ],
         "type": "factoid"
@@ -721,7 +733,7 @@
             {
                 "doc_id": "2488_2021-12-25",
                 "paragraph_id": 43,
-                "text": "Gross margin, as a percentage of net revenue for 2021, was 48%, compared to 45% in 2020.",
+                "text": "Gross margin as a percentage of net revenue was 48% in 2021 compared to 45% in 2020.",
                 "supports": "full"
             }
         ],
@@ -753,7 +765,7 @@
             {
                 "doc_id": "2488_2021-12-25",
                 "paragraph_id": 43,
-                "text": "Gross margin, as a percentage of net revenue for 2021, was 48%, compared to 45% in 2020.",
+                "text": "Gross margin as a percentage of net revenue was 48% in 2021 compared to 45% in 2020.",
                 "supports": "full"
             }
         ],
@@ -988,7 +1000,7 @@
         "evidence": [
             {
                 "doc_id": "7084_2020-12-31",
-                "paragraph_id": 19,
+                "paragraph_id": 14,
                 "text": "The Company\u2019s effective tax rate for 2020 was 5.4% compared to 13.2% for 2019.",
                 "supports": "full"
             }
@@ -1002,7 +1014,7 @@
         "evidence": [
             {
                 "doc_id": "7084_2020-12-31",
-                "paragraph_id": 19,
+                "paragraph_id": 14,
                 "text": "Income taxes of $101 million decreased $108 million. The Company\u2019s effective tax rate for 2020 was 5.4% compared to 13.2% for 2019. The change in rate was due primarily to changes in the geographic mix of earnings, foreign currency remeasurement, and adjustments to previously filed returns. The rates for 2020 and 2019 were also impacted by U.S. tax credits, mainly the railroad maintenance tax credit, which had an offsetting expense in cost of products sold.",
                 "supports": "full"
             }
