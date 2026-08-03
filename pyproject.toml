@@ -1,5 +1,5 @@
 [project]
-name = "mdna-qa-rag"
+name = "sec-mdna-rag"
 version = "0.1.0"
 description = "Financial RAG System for SEC 10-K MD&A Analysis"
 readme = "README.md"
