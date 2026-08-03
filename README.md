@@ -159,10 +159,7 @@ In the ablation study, each retrieval chunk corresponds to one paragraph in the 
 Retrieval is evaluated using Recall@K and NDCG@K over 100 manually curated queries.
 Evidence labeled full or partial is assigned a relevance weight when calculating NDCG.
 Reported scores are averaged across all queries.
-Relative gain is calculated as
-$
-\frac{(\text{Filtered} − \text{Unfiltered})}{\text{Unfiltered}} × 100\%.
-$
+Relative gain is calculated as **Relative gain (%) = (Filtered − Unfiltered) / Unfiltered × 100**
 
 | Retrieval Method | Setting           |              Recall@1 |              Recall@5 |             Recall@10 |                NDCG@1 |                NDCG@5 |               NDCG@10 |
 | :--------------- | :---------------- | --------------------: | --------------------: | --------------------: | --------------------: | --------------------: | --------------------: |
