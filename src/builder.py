@@ -1,5 +1,4 @@
 import json
-import questionary
 import numpy as np
 from dataclasses import asdict
 from typing import Callable
@@ -11,7 +10,7 @@ from .indexing import (
     build_faiss_index,
     build_bm25,
 )
-from .config import PipelineConfig
+from .config import BuilderConfig
 from .utils import load_corpus
 
 
@@ -25,39 +24,37 @@ class Builder:
 
     def __init__(
         self,
-        cfg: PipelineConfig,
+        cfg: BuilderConfig,
         client: OpenAI,
     ) -> None:
         """
-        Initialize the builder with pipeline configuration and OpenAI client.
+        Initialize the builder with builder configuration and OpenAI client.
 
         Args:
-            cfg (PipelineConfig): Pipeline configuration values.
+            cfg (BuildConfig): Builder configuration values.
             client (OpenAI): OpenAI client used for embedding generation.
         """
         self.cfg = cfg
         self.client = client
-        self.paths = self.cfg.paths
+        self.paths_cfg = self.cfg.paths
 
-        self.artifacts = self.cfg.build_artifacts()
-        self.hashes = {k: v.compute_hash() for k, v in self.artifacts.items()}
+        artifacts = self.cfg.build_artifacts()
+        self.hashes = {k: v.compute_hash() for k, v in artifacts.items()}
 
-    def _artifact_path(
-        self, key: str, base_path: str, prefix: str, suffix: str
-    ) -> Path:
+    def _artifact_path(self, key: str, base_dir: str, prefix: str, suffix: str) -> Path:
         """
         Return the versioned artifact path for the given key.
 
         Args:
             key (str): The artifact key (e.g., "corpus", "embedding").
-            base_path (str): The base directory for the artifact type.
+            base_dir (str): The base directory for the artifact type.
             prefix (str): A prefix to identify the artifact type in the filename.
             suffix (str): The file extension for the artifact.
 
         Returns:
             Path: The full Path to the artifact file, incorporating the config hash.
         """
-        return Path(base_path) / f"{prefix}_{self.hashes[key]}{suffix}"
+        return Path(base_dir) / f"{prefix}_{self.hashes[key]}{suffix}"
 
     def _get_or_build(self, path: Path, build_fn: Callable, *args, **kwargs) -> Path:
         """
@@ -70,13 +67,17 @@ class Builder:
             **kwargs: Additional keyword arguments for the function to build the artifact.
 
         Returns:
-            Path: The artifact path.
+            artifact path (Path): The artifact path.
         """
-        if path.exists() and path.stat().st_size > 0:
+        if path.is_file() and path.stat().st_size > 0:
             return path
 
         path.parent.mkdir(parents=True, exist_ok=True)
-        build_fn(*args, **kwargs)
+        build_fn(path, *args, **kwargs)
+
+        if not path.is_file() or path.stat().st_size == 0:
+            raise RuntimeError(f"Failed to build artifact: {path}")
+
         return path
 
     def _build_corpus(self, output_path: Path) -> None:
@@ -87,7 +88,7 @@ class Builder:
             output_path (Path): The path where the corpus will be saved.
         """
         document_chunking_stream(
-            filings_dir=Path(self.cfg.corpus.filings_dir),
+            filings_dir=Path(self.paths_cfg.filings_dir),
             output_path=output_path,
             max_tokens=self.cfg.corpus.max_tokens,
             max_paragraphs=self.cfg.corpus.max_paragraphs,
@@ -98,10 +99,12 @@ class Builder:
         Prepare the corpus file path and build corpus if it does not exist.
 
         Returns:
-            Path: The corpus path.
+            corpus_path (Path): The corpus path.
         """
-        path = self._artifact_path("corpus", self.paths.corpus_path, "corpus", ".jsonl")
-        return self._get_or_build(path, self._build_corpus, path)
+        corpus_path = self._artifact_path(
+            "corpus", self.paths_cfg.corpus_dir, "corpus", ".jsonl"
+        )
+        return self._get_or_build(corpus_path, self._build_corpus)
 
     def _build_embeddings(self, output_path: Path, texts: list[str]) -> None:
         """
@@ -130,13 +133,13 @@ class Builder:
         Returns:
             tuple[Path, list[str]]: The path of embeddings and a list of corpus texts.
         """
-        path = self._artifact_path(
-            "embedding", self.paths.embeddings_path, "embedding", ".npy"
+        emb_path = self._artifact_path(
+            "embedding", self.paths_cfg.embeddings_dir, "embedding", ".npy"
         )
 
         _, texts = load_corpus(corpus_path)
 
-        path = self._get_or_build(path, self._build_embeddings, path, texts)
+        path = self._get_or_build(emb_path, self._build_embeddings, texts)
         return path, texts
 
     def _build_faiss(self, output_path: Path, emb_path: Path) -> None:
@@ -162,11 +165,13 @@ class Builder:
             emb_path (Path): The path to the embedding.
 
         Returns:
-            Path: The path to the FAISS index.
+            faiss_index_path (Path): The path to the FAISS index.
         """
-        path = self._artifact_path("faiss", self.paths.indexes_path, "faiss", ".index")
+        faiss_index_path = self._artifact_path(
+            "faiss", self.paths_cfg.indexes_dir, "faiss", ".index"
+        )
 
-        return self._get_or_build(path, self._build_faiss, path, emb_path)
+        return self._get_or_build(faiss_index_path, self._build_faiss, emb_path)
 
     def _build_bm25(self, output_path: Path, texts: list[str]) -> None:
         """
@@ -186,17 +191,19 @@ class Builder:
 
     def _prepare_bm25(self, texts: list[str]) -> Path:
         """
-        Prepare the BM25 artifact path and build it if missing.
+        Prepare the BM25 object path and build it if missing.
 
         Args:
             texts (list[str]): The list of text chunks corresponding to chunk_ids.
 
         Returns:
-            Path: The path to BM25 artifact.
+            bm25_path (Path): The path to BM25 object.
         """
-        path = self._artifact_path("bm25", self.paths.indexes_path, "bm25", ".pkl")
+        bm25_path = self._artifact_path(
+            "bm25", self.paths_cfg.indexes_dir, "bm25", ".pkl"
+        )
 
-        return self._get_or_build(path, self._build_bm25, path, texts)
+        return self._get_or_build(bm25_path, self._build_bm25, texts)
 
     def build_database(
         self, db_name: str, registry_dir: str = "./artifacts/registry"
@@ -214,8 +221,6 @@ class Builder:
         self._prepare_bm25(texts)
 
         self._save_registry(db_name, Path(registry_dir))
-
-        questionary.print(f"\n[✓] Database '{db_name}' ready.\n", style="bold fg:green")
 
     def _save_registry(self, db_name: str, registry_dir: Path) -> None:
         """

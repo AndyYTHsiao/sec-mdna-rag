@@ -13,7 +13,6 @@ def dense_retrieval(
     index: faiss.Index,
     *,
     top_k: int = 10,
-    filter_chunks: bool = True,
     candidate_indices: np.ndarray | None = None,
 ) -> tuple[np.ndarray, np.ndarray]:
     """
@@ -74,7 +73,7 @@ def dense_retrieval(
             )
 
     # Filtering succeeded, but no chunks matched.
-    if filter_chunks and candidate_indices is not None and candidate_indices.size == 0:
+    if candidate_indices is not None and candidate_indices.size == 0:
         return (
             np.empty(0, dtype=np.int64),
             np.empty(0, dtype=np.float32),
@@ -86,11 +85,11 @@ def dense_retrieval(
             np.empty(0, dtype=np.float32),
         )
 
-    apply_filter = filter_chunks and candidate_indices is not None
-
     # Searching the full index ensures that no eligible candidate is excluded
     # by an arbitrary pre-filter retrieval cutoff.
-    search_k = index.ntotal if apply_filter else min(top_k, index.ntotal)
+    search_k = (
+        index.ntotal if candidate_indices is not None else min(top_k, index.ntotal)
+    )
 
     scores, indices = index.search(query_emb, search_k)
 
@@ -102,7 +101,7 @@ def dense_retrieval(
     indices = indices[valid_mask]
     scores = scores[valid_mask]
 
-    if apply_filter:
+    if candidate_indices is not None:
         candidate_mask = np.isin(indices, candidate_indices)
         indices = indices[candidate_mask]
         scores = scores[candidate_mask]
@@ -120,7 +119,6 @@ def sparse_retrieval(
     bm25: BM25Okapi,
     *,
     top_k: int = 10,
-    filter_chunks: bool = True,
     candidate_indices: np.ndarray | None = None,
 ) -> tuple[np.ndarray, np.ndarray]:
     """
@@ -130,7 +128,6 @@ def sparse_retrieval(
         query (str): Input query.
         bm25 (BM25Okapi): BM25 index built over the full corpus.
         top_k (int): Maximum number of results to return.
-        filter_chunks (bool): Whether to restrict retrieval to ``candidate_indices``.
         candidate_indices (np.ndarray | None): Global corpus indices eligible for retrieval.
 
     Returns:
@@ -142,8 +139,8 @@ def sparse_retrieval(
     scores = bm25.get_scores(tokenize(query))
     sorted_indices = np.argsort(scores)[::-1]
 
-    # Fallback to normal BM25 if no filter enabled or candidate matching failed
-    if not filter_chunks or candidate_indices is None:
+    # If candidate matching failed
+    if candidate_indices is None:
         top_indices = sorted_indices[:top_k]
         return top_indices, scores[top_indices]
 
@@ -213,7 +210,6 @@ def hybrid_retrieval(
     dense_k: int = 50,
     sparse_k: int = 50,
     rrf_k: int = 60,
-    filter_chunks: bool = True,
     candidate_indices: np.ndarray | None = None,
 ) -> tuple[np.ndarray, np.ndarray]:
     """
@@ -256,7 +252,6 @@ def hybrid_retrieval(
         query_emb,
         faiss_index,
         top_k=dense_k,
-        filter_chunks=filter_chunks,
         candidate_indices=candidate_indices,
     )
 
@@ -264,7 +259,6 @@ def hybrid_retrieval(
         query,
         bm25,
         top_k=sparse_k,
-        filter_chunks=filter_chunks,
         candidate_indices=candidate_indices,
     )
 

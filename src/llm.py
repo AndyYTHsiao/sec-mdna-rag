@@ -50,6 +50,32 @@ def compute_embeddings(
     return embeddings
 
 
+def build_input_messages(
+    system_prompt: str, user_prompt: str, **kwargs
+) -> list[dict[str, str]]:
+    """
+    Create chat messages for the LLM prompt from a query and context.
+
+    Args:
+        system_prompt (str): The system prompt.
+        user_prompt (str): The user prompt.
+        **kwargs: Additional arguments for prompts.
+
+    Returns:
+        Chat message (list[dict[str, str]]): A list of OpenAI chat message dictionaries with
+        a system prompt and a user prompt.
+    """
+    try:
+        user_content = user_prompt.format(**kwargs)
+    except KeyError as e:
+        raise ValueError(f"Missing prompt argument: {e.args[0]}") from e
+
+    return [
+        {"role": "system", "content": system_prompt.strip()},
+        {"role": "user", "content": user_content.strip()},
+    ]
+
+
 def generate_response(client: OpenAI, input_message: str, model: str) -> str:
     """
     Generate response given an input query.

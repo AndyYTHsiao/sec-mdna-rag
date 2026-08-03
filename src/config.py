@@ -1,6 +1,7 @@
 from dataclasses import (
     dataclass,
     asdict,
+    field,
     fields,
     MISSING,
     is_dataclass,
@@ -9,9 +10,6 @@ from typing import Any, Type, TypeVar
 from .utils import hash_config
 
 T = TypeVar("T")
-
-
-# ---------- helper function ----------
 
 
 def build_dataclass(cls: Type[T], data: dict[str, Any]) -> T:
@@ -33,7 +31,7 @@ def build_dataclass(cls: Type[T], data: dict[str, Any]) -> T:
                             Keys should match field names defined in ``cls``.
 
     Returns:
-        An instance of the dataclass ``cls`` populated with values from
+        An instance of the dataclass (T): ``cls`` populated with values from
         ``data`` and default values where necessary.
 
     Raises:
@@ -70,48 +68,6 @@ def build_dataclass(cls: Type[T], data: dict[str, Any]) -> T:
     return cls(**kwargs)
 
 
-# ---------- low-level configs ----------
-
-
-@dataclass(frozen=True)
-class PathsConfig:
-    corpus_path: str = "./artifacts/corpus"
-    embeddings_path: str = "./artifacts/embeddings"
-    indexes_path: str = "./artifacts/indexes"
-
-
-@dataclass(frozen=True)
-class CorpusConfig:
-    filings_dir: str = "./data/filings"
-    max_tokens: int = 700
-    max_paragraphs: int = 1
-
-
-@dataclass(frozen=True)
-class EmbeddingConfig:
-    model: str = "text-embedding-3-small"
-    batch_size: int = 256
-
-
-@dataclass(frozen=True)
-class BM25Config:
-    k1: float = 1.5
-    b: float = 0.75
-
-
-@dataclass
-class QueryConfig:
-    registry_dir: str = "./artifacts/registry"
-    company_info_path: str = "./data/company_metadata.json"
-    model: str = "gpt-5.6-luna"
-    top_k: int = 5
-    dense_k: int = 5
-    sparse_k: int = 5
-    rrf_k: int = 60
-    filter_chunks: bool = True
-    fuzzy_threshold: float = 0.9
-
-
 @dataclass(frozen=True)
 class Artifact:
     name: str
@@ -135,15 +91,59 @@ class Artifact:
         return hash_config(payload)
 
 
-# ---------- top-level pipeline config ----------
+@dataclass(frozen=True)
+class PathsConfig:
+    filings_dir: str = "./data/filings"
+    corpus_dir: str = "./artifacts/corpus"
+    embeddings_dir: str = "./artifacts/embeddings"
+    indexes_dir: str = "./artifacts/indexes"
+    registry_dir: str = "./artifacts/registry"
 
 
 @dataclass(frozen=True)
-class PipelineConfig:
-    paths: PathsConfig
-    corpus: CorpusConfig
-    embedding: EmbeddingConfig
-    bm25: BM25Config
+class CorpusConfig:
+    max_tokens: int = 700
+    max_paragraphs: int = 1
+
+
+@dataclass(frozen=True)
+class EmbeddingConfig:
+    model: str = "text-embedding-3-small"
+    batch_size: int = 256
+
+
+@dataclass(frozen=True)
+class BM25Config:
+    k1: float = 1.5
+    b: float = 0.75
+
+
+@dataclass(frozen=True)
+class EvalConfig:
+    output_dir: str = "./artifacts/eval"
+    dataset_path: str = "./data/eval_dataset.json"
+
+
+@dataclass
+class QueryConfig:
+    model: str = "gpt-5.6-luna"
+    embedding_model: str = "text-embedding-3-small"
+    retrieval_method: str = "hybrid"
+    top_k: int = 5
+    dense_k: int = 5
+    sparse_k: int = 5
+    rrf_k: int = 60
+    filter_chunks: bool = True
+    fuzzy_threshold: float = 0.9
+    company_info_path: str = "./data/company_metadata.json"
+
+
+@dataclass(frozen=True)
+class BuilderConfig:
+    paths: PathsConfig = field(default_factory=PathsConfig)
+    corpus: CorpusConfig = field(default_factory=CorpusConfig)
+    embedding: EmbeddingConfig = field(default_factory=EmbeddingConfig)
+    bm25: BM25Config = field(default_factory=BM25Config)
 
     def build_artifacts(self) -> dict[str, Artifact]:
         corpus_artifact = Artifact(
@@ -166,7 +166,7 @@ class PipelineConfig:
         bm25_artifact = Artifact(
             name="bm25",
             config=self.bm25,
-            dependencies=(embedding_artifact, corpus_artifact),
+            dependencies=(corpus_artifact,),
         )
 
         return {

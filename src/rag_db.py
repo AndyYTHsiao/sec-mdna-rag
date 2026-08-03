@@ -1,15 +1,12 @@
 import json
 import pickle
 import numpy as np
-from openai import OpenAI
 from pathlib import Path
 from typing import Any
 from faiss import read_index, Index
 from rank_bm25 import BM25Okapi
-from .llm import compute_embeddings
-from .retrieval import hybrid_retrieval
+from .retrieval import sparse_retrieval, dense_retrieval, hybrid_retrieval
 from .utils import load_corpus
-from .config import QueryConfig
 
 
 class RAGDatabase:
@@ -73,11 +70,11 @@ class RAGDatabase:
         Load a database from its registry entry and return a RAGDatabase.
 
         Args:
-            db_name: The name of the database to load.
-            registry_dir: Directory containing database registry JSON files.
+            db_name (str): The name of the database to load.
+            registry_dir (str): Directory containing database registry JSON files.
 
         Returns:
-            A fully initialized RAGDatabase with corpus data and indexes loaded.
+           RAGDatabase: A fully initialized RAGDatabase with corpus data and indexes loaded.
 
         Raises:
             ValueError: If the requested database registry file does not exist.
@@ -93,9 +90,9 @@ class RAGDatabase:
         paths = db_registry["config"]["paths"]
         hashes = db_registry["hashes"]
 
-        corpus_path = Path(paths["corpus_path"]) / f"corpus_{hashes['corpus']}.jsonl"
+        corpus_path = Path(paths["corpus_dir"]) / f"corpus_{hashes['corpus']}.jsonl"
 
-        index_dir = Path(paths["indexes_path"])
+        index_dir = Path(paths["indexes_dir"])
         faiss_path = index_dir / f"faiss_{hashes['faiss']}.index"
         bm25_path = index_dir / f"bm25_{hashes['bm25']}.pkl"
 
@@ -119,44 +116,71 @@ class RAGDatabase:
     def retrieve(
         self,
         query: str,
-        client: OpenAI,
-        query_cfg: QueryConfig,
-        batch_size: int = 256,
+        query_emb: np.ndarray,
+        *,
+        top_k: int,
+        dense_k: int,
+        sparse_k: int,
+        rrf_k: int,
         candidate_indices: np.ndarray | None = None,
+        retrieval_method: str = "hybrid",
     ) -> list[dict[str, Any]]:
         """
         Retrieve ranked document chunks for a query using hybrid search.
 
         Args:
             query (str): The user query string.
-            client (OpenAI): OpenAI client used to compute dense embeddings.
-            query_cfg (QueryConfig): Query configuration controlling retrieval behavior.
-            batch_size (int): The number of chunks sent in one API request.
+            query_emb (np.ndarray): Query embedding with shape ``(dimension,)`` or ``(1, dimension)``.
+            top_k (int): Number of final documents to return.
+            dense_k (int): Number of dense results to include before fusion.
+            sparse_k (int): Number of sparse results to include before fusion.
+            rrf_k (int): Non-negative Reciprocal Rank Fusion constant.
             candidate_indices (np.ndarray | None): Global corpus indices eligible for retrieval.
                 - ``None`` means filtering is unavailable, so retrieval falls back
-                to the full corpus.
+                    to the full corpus.
                 - An empty array means filtering succeeded but no chunks matched.
                 - A non-empty array restricts retrieval to those corpus indices.
-        Returns:
-            A list of dictionaries containing chunk_id, text, and score
-            for each retrieved result.
-        """
-        query_emb = compute_embeddings(
-            client, self.embedding_model, [query], batch_size=batch_size
-        )[0]
+            retrieval_method (str): Retrieval method to use: "sparse", "dense", or "hybrid".
 
-        indices, scores = hybrid_retrieval(
-            query,
-            query_emb,
-            self.faiss_index,
-            self.bm25_index,
-            top_k=query_cfg.top_k,
-            dense_k=query_cfg.dense_k,
-            sparse_k=query_cfg.sparse_k,
-            rrf_k=query_cfg.rrf_k,
-            filter_chunks=query_cfg.filter_chunks,
-            candidate_indices=candidate_indices,
-        )
+        Returns:
+            list[dict[str, Any]]: A list of dictionary containing retrieved result.
+                - chunk IDs (str)
+                - text (str)
+                - score (float)
+        """
+        if retrieval_method not in {"sparse", "dense", "hybrid"}:
+            raise ValueError(
+                "Unsupported methods. Choose 'sprase', 'dense', or 'hybrid'"
+            )
+
+        elif retrieval_method == "sparse":
+            indices, scores = sparse_retrieval(
+                query=query,
+                bm25=self.bm25_index,
+                top_k=top_k,
+                candidate_indices=candidate_indices,
+            )
+
+        elif retrieval_method == "dense":
+            indices, scores = dense_retrieval(
+                query_emb=query_emb,
+                index=self.faiss_index,
+                top_k=top_k,
+                candidate_indices=candidate_indices,
+            )
+
+        elif retrieval_method == "hybrid":
+            indices, scores = hybrid_retrieval(
+                query,
+                query_emb,
+                self.faiss_index,
+                self.bm25_index,
+                top_k=top_k,
+                dense_k=dense_k,
+                sparse_k=sparse_k,
+                rrf_k=rrf_k,
+                candidate_indices=candidate_indices,
+            )
 
         return [
             {

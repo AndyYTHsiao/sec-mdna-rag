@@ -22,32 +22,34 @@ CLASS_LABELS = {
 
 
 # -----------------------------
-# Generic Field Labels (fallback if no qualified match)
+# Generic Field Labels
+# (fallback if no qualified match)
 # -----------------------------
 
 FIELD_LABELS = {
     # Paths
-    "corpus_path": "Corpus Output Path",
-    "embeddings_path": "Embeddings Output Path",
-    "indexes_path": "Indexes Output Path",
-    # Corpus
     "filings_dir": "Raw Filings Directory",
-    "max_tokens": "Maximum Tokens per Chunk",
+    "corpus_dir": "Corpus Output Directory",
+    "embeddings_dir": "Embeddings Output Directory",
+    "indexes_dir": "Indexes Output Directory",
+    "registry_dir": "Registry Output Directory",
+    # Corpus
     "max_paragraphs": "Maximum Paragraphs per Chunk",
     # Embeddings
     "model": "Model Name",
-    # FAISS
-    "index_type": "FAISS Index Type",
-    "metric": "FAISS Distance Metric",
-    "nlist": "Number of IVF Cells",
     # BM25
     "k1": "BM25 k1 Parameter",
     "b": "BM25 b Parameter",
     # Query
+    "embedding_model": "Embedding Model",
+    "retrieval_method": "Retrieval Method",
     "top_k": "Final Retrieved Chunks",
     "dense_k": "Dense Retriever Top K",
     "sparse_k": "Sparse Retriever Top K",
     "rrf_k": "Reciprocal Rank Fusion k",
+    "filter_chunks": "Whether to filter chunks",
+    "fuzzy_threshold": "Minimum Similarity Threshold for Fuzzy Company Name Matching (0-1)",
+    "company_info_path": "Path to Company Information JSON File",
 }
 
 
@@ -59,15 +61,16 @@ FIELD_LABELS = {
 QUALIFIED_FIELD_LABELS = {
     # Embedding
     "EmbeddingConfig.model": "Embedding Model",
+    "EmbeddingConfig.batch_size": "Batch Size per Request",
     # Query
     "QueryConfig.model": "LLM Model",
     "QueryConfig.top_k": "Final Top K Chunks",
     "QueryConfig.dense_k": "Dense Retrieval Top K",
     "QueryConfig.sparse_k": "Sparse Retrieval Top K",
     "QueryConfig.rrf_k": "RRF Constant (k)",
-    # FAISS
-    "FaissConfig.metric": "FAISS Similarity Metric",
-    "FaissConfig.nlist": "IVF Cluster Count",
+    "QueryConfig.filter_chunks": "Filter Chunks",
+    "QueryConfig.fuzzy_threshold": "Minimum Similarity Threshold for Fuzzy Company Name Matching (0-1)",
+    "QueryConfig.company_info_path": "Path to Company Information JSON File",
     # Corpus
     "CorpusConfig.max_tokens": "Chunk Size (tokens)",
 }

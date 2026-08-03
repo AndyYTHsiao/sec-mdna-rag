@@ -1,7 +1,10 @@
 import re
+import json
 import numpy as np
+from openai import OpenAI
 from difflib import SequenceMatcher
-
+from .prompts import PROMPT_HELPER
+from .llm import generate_response, build_input_messages
 
 LEGAL_SUFFIXES = {
     "inc",
@@ -194,6 +197,84 @@ def _filter_indices(
         filtered_indices.append(i)
 
     return filtered_indices
+
+
+def extract_cadidates_info(
+    client: OpenAI,
+    query: str,
+    model: str,
+) -> tuple[list[str] | None, int | None, int | None]:
+    """
+    Extract structured retrieval filters from a user query.
+
+    Args:
+        client (OpenAI): OpenAI client used for structured extraction.
+        query (str): User query to analyze.
+        model (str): Model used for extraction.
+
+    Returns:
+        tuple[list[str] | None, int | None, int | None]: Extracted company names and year range.
+
+    Raises:
+        ValueError: If the model response is invalid or missing required fields.
+    """
+    filter_prompts = PROMPT_HELPER["filter_chunk"]
+    messages = build_input_messages(
+        filter_prompts["system"],
+        filter_prompts["user"],
+        query=query,
+    )
+
+    raw_response = generate_response(
+        client,
+        messages,
+        model,
+    )
+
+    try:
+        extracted = json.loads(raw_response)
+    except json.JSONDecodeError as exc:
+        raise ValueError(
+            "The filter extraction response was not valid JSON. "
+            f"Response: {raw_response!r}"
+        ) from exc
+
+    if not isinstance(extracted, dict):
+        raise ValueError(
+            "The filter extraction response must be a JSON object. "
+            f"Received: {type(extracted).__name__}"
+        )
+
+    required_fields = {"companies", "start_year", "end_year"}
+    missing_fields = required_fields - extracted.keys()
+
+    if missing_fields:
+        raise ValueError(
+            "The filter extraction response is missing required fields: "
+            f"{sorted(missing_fields)}"
+        )
+
+    companies = extracted["companies"]
+    start_year = extracted["start_year"]
+    end_year = extracted["end_year"]
+
+    if not isinstance(companies, list) or not all(
+        isinstance(company, str) for company in companies
+    ):
+        raise ValueError("'companies' must be a list of strings.")
+
+    if start_year is not None and not isinstance(start_year, int):
+        raise ValueError("'start_year' must be an integer or null.")
+
+    if end_year is not None and not isinstance(end_year, int):
+        raise ValueError("'end_year' must be an integer or null.")
+
+    if start_year is not None and end_year is not None and start_year > end_year:
+        raise ValueError(
+            f"'start_year' ({start_year}) cannot be later than 'end_year' ({end_year})."
+        )
+
+    return companies, start_year, end_year
 
 
 def get_company_candidate_indices(
