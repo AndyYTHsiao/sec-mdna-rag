@@ -1,125 +1,132 @@
+import json
 import os
 import streamlit as st
-from openai import OpenAI
+from dataclasses import MISSING, fields, is_dataclass
+from typing import Any, Literal, Type, TypeVar, get_args, get_origin
 from dotenv import load_dotenv
-from dataclasses import fields, MISSING, is_dataclass
-from typing import get_origin, get_args, Literal, Type, Any
-from utils import list_existing_databases
-from query import run_query
-from builder import Builder
-from config import PipelineConfig, QueryConfig
-from labels import get_class_label, get_field_label, get_field_help
+from openai import OpenAI
+from src.builder import Builder
+from src.config import BuilderConfig, QueryConfig
+from src.labels import get_class_label, get_field_help, get_field_label
+from src.query import run_query
+from src.utils import list_existing_databases
+
+T = TypeVar("T")
 
 
 def render_dataclass_form(
-    cls: Type[Any],
+    cls: Type[T],
+    *,
+    current: T | None = None,
     prefix: str = "",
     show_header: bool = True,
-) -> Any:
-    """Render a dataclass as a Streamlit input form and return the filled instance.
+) -> T:
+    """Render a dataclass as Streamlit input widgets.
+
+    Existing values are used as widget defaults so users can edit a
+    configuration without resetting fields that they leave unchanged.
 
     Args:
-        cls (Type[Any]): The dataclass type to render.
-        prefix (str): Optional prefix to apply to Streamlit widget keys.
-        show_header (bool): Whether to render a section header for this dataclass.
+        cls: Dataclass type to render.
+        current: Optional existing instance whose values become defaults.
+        prefix: Prefix added to Streamlit widget keys to keep them unique.
+        show_header: Whether to show the human-readable dataclass heading.
 
     Returns:
-        An instance of `cls` populated with user input from the rendered form.
+        A new instance of ``cls`` populated with the current widget values.
+
+    Raises:
+        TypeError: If ``cls`` is not a dataclass type or ``current`` is not an
+            instance of ``cls``.
     """
-    values = {}
+    if not is_dataclass(cls):
+        raise TypeError(f"{cls!r} is not a dataclass type")
 
-    # Section Header
+    if current is not None and not isinstance(current, cls):
+        raise TypeError(
+            f"Expected current to be an instance of {cls.__name__}, "
+            f"got {type(current).__name__}"
+        )
+
+    values: dict[str, Any] = {}
+
     if show_header:
-        title = get_class_label(cls.__name__)
-        st.subheader(title)
+        st.subheader(get_class_label(cls.__name__))
 
-    # Fields
-    for f in fields(cls):
-        field_name = f.name
-        field_type = f.type
-
-        has_default = f.default is not MISSING
-        default_value = f.default if has_default else None
-
+    for dataclass_field in fields(cls):
+        field_name = dataclass_field.name
+        field_type = dataclass_field.type
         key = f"{prefix}{field_name}"
+        current_value = (
+            getattr(current, field_name)
+            if current is not None
+            else _get_field_default(dataclass_field)
+        )
 
-        # Nested Dataclass
         if is_dataclass(field_type):
+            nested_current = current_value if current_value is not MISSING else None
             values[field_name] = render_dataclass_form(
                 field_type,
+                current=nested_current,
                 prefix=f"{key}_",
                 show_header=True,
             )
-
             continue
 
-        # Labels + Help
-        label = get_field_label(
-            cls.__name__,
-            field_name,
-        )
+        label = get_field_label(cls.__name__, field_name)
+        help_text = get_field_help(cls.__name__, field_name)
 
-        help_text = get_field_help(
-            cls.__name__,
-            field_name,
-        )
-
-        # Literal → Dropdown
         if get_origin(field_type) is Literal:
             options = list(get_args(field_type))
-
             default_index = (
-                options.index(default_value) if default_value in options else 0
+                options.index(current_value) if current_value in options else 0
             )
-
             values[field_name] = st.selectbox(
                 label,
-                options,
+                options=options,
                 index=default_index,
                 key=key,
                 help=help_text,
             )
-
             continue
 
-        # Bool
         if field_type is bool:
             values[field_name] = st.checkbox(
                 label,
-                value=default_value if has_default else False,
+                value=(bool(current_value) if current_value is not MISSING else False),
                 key=key,
                 help=help_text,
             )
-
             continue
 
-        # Integer
         if field_type is int:
-            values[field_name] = st.number_input(
-                label,
-                value=int(default_value) if has_default else 0,
-                step=1,
-                key=key,
-                help=help_text,
+            values[field_name] = int(
+                st.number_input(
+                    label,
+                    value=(int(current_value) if current_value is not MISSING else 0),
+                    step=1,
+                    key=key,
+                    help=help_text,
+                )
             )
-
             continue
 
-        # Float
         if field_type is float:
-            values[field_name] = st.number_input(
-                label,
-                value=float(default_value) if has_default else 0.0,
-                key=key,
-                help=help_text,
+            values[field_name] = float(
+                st.number_input(
+                    label,
+                    value=(
+                        float(current_value) if current_value is not MISSING else 0.0
+                    ),
+                    key=key,
+                    help=help_text,
+                )
             )
-
             continue
 
-        # Text
         values[field_name] = st.text_input(
             label,
-            value=str(default_value) if has_default else "",
+            value=(str(current_value) if current_value is not MISSING else ""),
             key=key,
             help=help_text,
         )
@@ -127,163 +134,264 @@ def render_dataclass_form(
     return cls(**values)
 
 
-if __name__ == "__main__":
-    load_dotenv()
+def _get_field_default(dataclass_field: Any) -> Any:
+    """Return a dataclass field's default value.
 
-    api_key = os.getenv("OPENAI_API_KEY")
-    client = OpenAI(api_key=api_key)
+    Args:
+        dataclass_field: Dataclass field to inspect.
 
-    registry_dir = "./artifacts/registry"
+    Returns:
+        The declared default, the result of its default factory, or
+        ``dataclasses.MISSING`` when neither exists.
+    """
+    if dataclass_field.default is not MISSING:
+        return dataclass_field.default
+
+    if dataclass_field.default_factory is not MISSING:
+        return dataclass_field.default_factory()
+
+    return MISSING
+
+
+def initialize_session_state() -> None:
+    """Initialize persistent configuration and query-result state."""
+    if "builder_cfg" not in st.session_state:
+        st.session_state.builder_cfg = BuilderConfig()
 
     if "query_cfg" not in st.session_state:
         st.session_state.query_cfg = QueryConfig()
 
-    # Sidebar navigation
+    if "expand_all_chunks" not in st.session_state:
+        st.session_state.expand_all_chunks = False
+
+    if "last_response" not in st.session_state:
+        st.session_state.last_response = None
+
+    if "last_query" not in st.session_state:
+        st.session_state.last_query = ""
+
+    if "last_database" not in st.session_state:
+        st.session_state.last_database = None
+
+
+def render_build_page(client: OpenAI) -> None:
+    """Render the database-building workflow.
+
+    Args:
+        client: Authenticated OpenAI client passed to ``Builder``.
+    """
+    st.title("Build a RAG Database")
+
+    builder_cfg: BuilderConfig = st.session_state.builder_cfg
+    db_name = st.text_input("Database name", key="build_database_name")
+
+    updated_builder_cfg = render_dataclass_form(
+        BuilderConfig,
+        current=builder_cfg,
+        prefix="build_builder_",
+        show_header=False,
+    )
+
+    if not st.button(
+        "Build Database",
+        type="primary",
+        key="build_database_button",
+    ):
+        return
+
+    if not db_name.strip():
+        st.error("Database name is required.")
+        return
+
+    st.session_state.builder_cfg = updated_builder_cfg
+
+    try:
+        with st.spinner("Building database..."):
+            builder = Builder(updated_builder_cfg, client)
+            builder.build_database(db_name.strip())
+    except Exception as exc:
+        st.error(f"Failed to build database: {exc}")
+        return
+
+    st.success(f"Database '{db_name.strip()}' built successfully.")
+
+
+def render_query_page(client: OpenAI) -> None:
+    """Render the question-answering workflow.
+
+    Args:
+        client: Authenticated OpenAI client passed to ``run_query``.
+    """
+    st.title("Ask a Question")
+
+    builder_cfg: BuilderConfig = st.session_state.builder_cfg
+    query_cfg: QueryConfig = st.session_state.query_cfg
+    databases = list_existing_databases(builder_cfg.paths.registry_dir)
+
+    if not databases:
+        st.warning("No databases found. Build one first.")
+        return
+
+    db_name = st.selectbox(
+        "Select database",
+        options=databases,
+        key="query_database",
+    )
+    query = st.text_input("Your question", key="query_text")
+
+    if (
+        query != st.session_state.last_query
+        or db_name != st.session_state.last_database
+    ):
+        st.session_state.last_response = None
+
+    if st.button("Ask", type="primary", key="ask_button"):
+        if not query.strip():
+            st.error("Please enter a question.")
+            return
+
+        try:
+            with st.spinner("Running query..."):
+                company_info = None
+
+                if query_cfg.filter_chunks:
+                    with open(
+                        query_cfg.company_info_path,
+                        "r",
+                        encoding="utf-8",
+                    ) as file:
+                        company_info = json.load(file)
+
+                response = run_query(
+                    query_cfg=query_cfg,
+                    client=client,
+                    query=query.strip(),
+                    db_name=db_name,
+                    company_info=company_info,
+                )
+        except FileNotFoundError as exc:
+            st.error(f"Required file was not found: {exc}")
+            return
+        except json.JSONDecodeError as exc:
+            st.error(f"The company metadata file contains invalid JSON: {exc}")
+            return
+        except Exception as exc:
+            st.error(f"Query failed: {exc}")
+            return
+
+        st.session_state.last_response = response
+        st.session_state.last_query = query
+        st.session_state.last_database = db_name
+        st.session_state.expand_all_chunks = False
+
+    render_query_response()
+
+
+def render_query_response() -> None:
+    """Render the most recent answer and its retrieved chunks."""
+    response = st.session_state.last_response
+
+    if response is None:
+        return
+
+    st.markdown("### Answer")
+    st.write(response.get("answer", ""))
+
+    retrieved_docs = response.get("retrieved_docs", [])
+
+    if not retrieved_docs:
+        st.info("No chunks were retrieved.")
+        return
+
+    heading_col, button_col = st.columns([5, 1])
+
+    with heading_col:
+        st.markdown(f"### Retrieved Chunks ({len(retrieved_docs)})")
+
+    with button_col:
+        button_label = (
+            "Collapse All" if st.session_state.expand_all_chunks else "Expand All"
+        )
+        if st.button(button_label, type="tertiary", key="toggle_all_chunks"):
+            st.session_state.expand_all_chunks = not st.session_state.expand_all_chunks
+            st.rerun()
+
+    st.divider()
+
+    for index, doc in enumerate(retrieved_docs, start=1):
+        chunk_id = doc.get("chunk_id")
+        text = doc.get("text", "")
+        badge = " 🥇 Top Match" if index == 1 else ""
+        title = f"Chunk {index}{badge}"
+
+        if chunk_id:
+            title += f" | ID: {chunk_id}"
+
+        expanded = st.session_state.expand_all_chunks or index == 1
+
+        with st.expander(title, expanded=expanded):
+            st.markdown("**Content**")
+            st.write(text)
+
+
+def render_query_settings_page() -> None:
+    """Render the form used to edit and save ``QueryConfig`` settings."""
+    st.title("Query Configuration")
+
+    query_cfg: QueryConfig = st.session_state.query_cfg
+    updated_query_cfg = render_dataclass_form(
+        QueryConfig,
+        current=query_cfg,
+        prefix="query_settings_",
+        show_header=False,
+    )
+
+    if st.button(
+        "Save Settings",
+        type="primary",
+        key="save_query_settings",
+    ):
+        st.session_state.query_cfg = updated_query_cfg
+        st.session_state.last_response = None
+        st.success("Query settings updated.")
+
+
+def main() -> None:
+    """Configure and run the Streamlit application."""
+    load_dotenv()
+
+    st.set_page_config(
+        page_title="RAG System",
+        page_icon="🔎",
+        layout="wide",
+    )
+
+    api_key = os.getenv("OPENAI_API_KEY")
+
+    if not api_key:
+        st.error("OPENAI_API_KEY is not set. Add it to your environment or .env file.")
+        st.stop()
+
+    client = OpenAI(api_key=api_key)
+    initialize_session_state()
+
     st.sidebar.title("RAG System")
     task = st.sidebar.radio(
         "Select Task",
         [
             "Build Database",
-            "Ask Question",
+            "Ask a Question",
             "Query Settings",
         ],
     )
 
-    # Build database
     if task == "Build Database":
-        st.title("Build a RAG Database")
-
-        db_name = st.text_input("Database name")
-
-        cfg = render_dataclass_form(
-            PipelineConfig,
-            prefix="pipeline_",
-            show_header=False,
-        )
-
-        if st.button("Build Database"):
-            if not db_name:
-                st.error("Database name required")
-            else:
-                with st.spinner("Building database..."):
-                    builder = Builder(cfg, client)
-                    builder.build_database(db_name)
-
-                st.success("Database built successfully!")
-
-    # Ask question
-    elif task == "Ask Question":
-        st.title("Ask a Question")
-
-        dbs = list_existing_databases(registry_dir)
-
-        if not dbs:
-            st.warning("No databases found.")
-            st.stop()
-
-        db_name = st.selectbox(
-            "Select database",
-            dbs,
-        )
-
-        query = st.text_input("Your question")
-
-        # Session state initialization
-        if "expand_all_chunks" not in st.session_state:
-            st.session_state.expand_all_chunks = False
-
-        if "last_response" not in st.session_state:
-            st.session_state.last_response = None
-
-        if "last_query" not in st.session_state:
-            st.session_state.last_query = ""
-
-        # Clear stale results if query changes
-        if query != st.session_state.last_query:
-            st.session_state.last_response = None
-
-        # Ask button
-        if st.button("Ask"):
-            if not query:
-                st.error("Please enter a question.")
-
-            else:
-                with st.spinner("Running query..."):
-                    response = run_query(
-                        st.session_state.query_cfg,
-                        client,
-                        query,
-                        db_name,
-                        registry_dir=registry_dir,
-                    )
-
-                st.session_state.last_response = response
-                st.session_state.last_query = query
-
-                # Reset expand state
-                st.session_state.expand_all_chunks = False
-
-        # Render result
-        if st.session_state.last_response is not None:
-            response = st.session_state.last_response
-
-            st.markdown("### Answer")
-            st.write(response["answer"])
-
-            retrieved_docs = response["retrieved_docs"]
-
-            if retrieved_docs:
-                num_chunks = len(retrieved_docs)
-                col1, col2 = st.columns([5, 1])
-
-                with col1:
-                    st.markdown(f"### Retrieved Chunks ({num_chunks})")
-
-                with col2:
-                    if st.button(
-                        "Expand All"
-                        if not st.session_state.expand_all_chunks
-                        else "Collapse All",
-                        type="tertiary",
-                    ):
-                        st.session_state.expand_all_chunks = (
-                            not st.session_state.expand_all_chunks
-                        )
-
-                        st.rerun()
-
-                st.divider()
-
-                for i, doc in enumerate(retrieved_docs, start=1):
-                    chunk_id = doc.get("chunk_id")
-                    text = doc.get("text", "")
-
-                    badge = " 🥇 Top Match" if i == 1 else ""
-
-                    title = f"Chunk {i}{badge}"
-
-                    if chunk_id:
-                        title += f" | ID: {chunk_id}"
-
-                    expanded_state = st.session_state.expand_all_chunks or i == 1
-
-                    expander_key = f"chunk_{i}_{st.session_state.expand_all_chunks}"
-
-                    with st.expander(
-                        title,
-                        expanded=expanded_state,
-                        key=expander_key,
-                    ):
-                        st.markdown("**Content**")
-                        st.write(text)
-
-    # Query settings
+        render_build_page(client)
+    elif task == "Ask a Question":
+        render_query_page(client)
     elif task == "Query Settings":
-        st.title("Query Configuration")
+        render_query_settings_page()
 
-        new_cfg = render_dataclass_form(QueryConfig, prefix="query_", show_header=False)
 
-        if st.button("Save Settings"):
-            st.session_state.query_cfg = new_cfg
-
-            st.success("Settings updated!")
+if __name__ == "__main__":
+    main()
