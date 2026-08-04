@@ -82,6 +82,14 @@ uv run python -m src.cli
 uv run python -m streamlit run src/app.py
 ```
 
+### Run the tests
+
+The test suite uses pytest:
+
+```bash
+uv run --with pytest pytest
+```
+
 ## Example Query and Output
 
 **Question:**
